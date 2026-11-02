@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Luxury Brand Typography & Utilities */
+.font-brand {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  letter-spacing: 0.28em;
+}
+
+.font-serif-luxury {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+/* Smooth transition for theme toggle & dual Khmer/English Typography */
+html {
+  font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Custom subtle scrollbars adapting to Light / Dark themes */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 9999px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f5f5f4;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 9999px;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;
+}
+
+/* Hide scrollbar for horizontal mobile swipe containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hero Cinematic Animation Utilities */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(32px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-hero-fade-up {
+  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-slide-left {
+  animation: heroSlideLeft 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-hero-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-hero-delay-3 {
+  animation-delay: 0.3s;
+}
