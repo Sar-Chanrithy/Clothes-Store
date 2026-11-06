@@ -1,41 +1,94 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
-import { elevatedEssentialsBanner } from "../../assets/banner/elevatedEssentialsImage";
+import { boutiqueHeroBanner } from "../../assets/banner/boutiqueHeroImage";
 import {
   Leaf,
   Gem,
-  Package
+  Package,
+  ArrowRight,
+  Sparkles
 } from "lucide-react";
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isKhmer = language === "km";
 
   return (
     <div className="relative bg-[#0c0c0d] dark:bg-neutral-950 text-white overflow-hidden transition-colors duration-300">
       
-      {/* ===== HERO MAIN BANNER (ELEVATED ESSENTIALS) ===== */}
+      {/* ===== HERO MAIN BANNER (LUXURY BOUTIQUE) ===== */}
       <section className="relative w-full">
         <div className="relative w-full max-w-[1920px] mx-auto overflow-hidden group">
-          {/* Main Hero Visual Image */}
-          <Link
-            to="/shop?filter=new"
-            className="block relative w-full aspect-[1024/446] min-h-[300px] sm:min-h-[420px] md:min-h-[500px] lg:min-h-[620px] overflow-hidden cursor-pointer select-none"
-            aria-label="Elevated Essentials - Shop New Arrivals"
-          >
+          
+          {/* Main Visual Container */}
+          <div className="relative w-full aspect-[2/1] min-h-[420px] sm:min-h-[520px] md:min-h-[620px] lg:min-h-[720px] overflow-hidden select-none">
+            {/* Background Storefront Photograph */}
             <img
-              src={elevatedEssentialsBanner}
-              alt="Elevated Essentials - Timeless Style. Modern Edge."
-              className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+              src={boutiqueHeroBanner}
+              alt="Thyy Store - Luxury Flagship Boutique"
+              className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
               loading="eager"
             />
 
-            {/* Subtle Interactive CTA Hover Indicator Overlay on the SHOP NEW ARRIVALS button */}
-            <div 
-              className="absolute left-[5.5%] bottom-[16%] w-[21%] h-[12%] min-w-[130px] min-h-[36px] max-w-[240px] max-h-[50px] pointer-events-none rounded transition-all duration-300 group-hover:ring-2 group-hover:ring-white/40 group-hover:bg-white/10"
-              aria-hidden="true"
-            />
-          </Link>
+            {/* Dark Scrim Gradients for Superior Contrast & Luxury Warmth */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent sm:from-black/80 sm:via-black/35 sm:to-black/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30 pointer-events-none" />
+
+            {/* Overlay Editorial Content */}
+            <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 max-w-5xl">
+              
+              {/* Eyebrow Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#c2a677]/40 text-[#c2a677] text-xs font-semibold tracking-[0.2em] uppercase backdrop-blur-md w-fit mb-4 animate-fade-in">
+                <Sparkles className="w-3.5 h-3.5 text-[#c2a677]" />
+                <span>
+                  {isKhmer ? "ការប្រមូលម៉ូដប្រណិត ២០២៤" : "FLAGSHIP BOUTIQUE COLLECTION"}
+                </span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal tracking-wide text-white uppercase leading-[1.1] drop-shadow-md">
+                {isKhmer ? (
+                  <>
+                    លើកកម្ពស់ <span className="text-[#c2a677] italic font-light">ស្ទីលរបស់អ្នក</span>
+                  </>
+                ) : (
+                  <>
+                    Elevate <span className="text-[#c2a677] italic font-light">Your Style</span>
+                  </>
+                )}
+              </h1>
+
+              {/* Editorial Description */}
+              <p className="text-xs sm:text-base md:text-lg text-neutral-200/90 font-light max-w-xl leading-relaxed mt-3 sm:mt-4 drop-shadow">
+                {isKhmer
+                  ? "ស្វែងរកសម្លៀកបំពាក់ទាន់សម័យ ក្រណាត់គុណភាពខ្ពស់ និងការរចនាម៉ូដយ៉ាងផ្ចិតផ្ចង់សម្រាប់ជីវិតប្រចាំថ្ងៃរបស់អ្នក។"
+                  : "Discover refined silhouettes, premium imported fabrics, and contemporary tailoring crafted for the modern lifestyle."}
+              </p>
+
+              {/* CTA Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mt-6 sm:mt-8">
+                {/* Primary Button */}
+                <Link
+                  to="/shop"
+                  className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#c2a677] hover:bg-[#d6bc8f] text-neutral-950 font-bold tracking-[0.16em] text-xs sm:text-sm uppercase rounded transition-all duration-300 shadow-xl hover:shadow-[#c2a677]/30 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span>{isKhmer ? "ទិញឥឡូវនេះ" : "EXPLORE COLLECTION"}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
+                {/* Secondary Button */}
+                <Link
+                  to="/shop?filter=new"
+                  className="inline-flex items-center gap-2 px-5 sm:px-7 py-3.5 sm:py-4 bg-white/10 hover:bg-white/20 text-white font-medium tracking-[0.16em] text-xs sm:text-sm uppercase rounded backdrop-blur-md border border-white/25 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span>{isKhmer ? "ទំនិញថ្មីៗ" : "NEW ARRIVALS"}</span>
+                </Link>
+              </div>
+
+            </div>
+
+          </div>
         </div>
 
         {/* ===== BOTTOM 3-COLUMN LUXURY FEATURES BAR ===== */}
