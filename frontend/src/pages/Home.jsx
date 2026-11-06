@@ -5,7 +5,7 @@ import Newsletter from "../components/home/Newsletter";
 import { products, formatKHR } from "../data/products";
 import { useCart } from "../context/CartContext";
 import { useLanguage } from "../context/LanguageContext";
-import { Star, Heart, Eye, ShoppingBag, Check, Search, X, Sparkles, ArrowRight } from "lucide-react";
+import { Star, Heart, Eye, ShoppingBag, Check, Search, X } from "lucide-react";
 
 // Categories definition
 const categories = {

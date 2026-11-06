@@ -46,12 +46,12 @@ export const translations = {
     in_stock_pp: "In Stock (Phnom Penh)",
 
     // Hero Features
-    f1_title: "100% PREMIUM FABRICS",
-    f1_desc: "Italian virgin wool, Mulberry silks & organic flax",
-    f2_title: "PERFECT FIT & 7-DAY RETURN",
-    f2_desc: "Hassle-free exchange & satisfaction guarantee",
-    f3_title: "CAMBODIA FAST DELIVERY",
-    f3_desc: "Free on orders over $30 across all 25 provinces",
+    f1_title: "PREMIUM FABRICS",
+    f1_desc: "Carefully selected materials",
+    f2_title: "TIMELESS DESIGN",
+    f2_desc: "Built to last beyond trends",
+    f3_title: "WORLDWIDE SHIPPING",
+    f3_desc: "Delivering luxury anywhere",
 
     // Hero Tabs
     tab_mens: "Men's Collection",
@@ -204,12 +204,12 @@ export const translations = {
     in_stock_pp: "មានក្នុងស្តុក (ភ្នំពេញ)",
 
     // Hero Features
-    f1_title: "ក្រណាត់គុណភាពខ្ពស់ 100%",
-    f1_desc: "រោមចៀមអ៊ីតាលី សូត្រមន និងក្រណាត់កប្បាសសុទ្ធ",
-    f2_title: "ធានាការផ្លាស់ប្តូរក្នុង ៧ ថ្ងៃ",
-    f2_desc: "ធានាគុណភាពពេញចិត្ត និងប្តូរទំហំបានយ៉ាងងាយស្រួល",
-    f3_title: "ដឹកជញ្ជូនរហ័សទូទាំងកម្ពុជា",
-    f3_desc: "ឥតគិតថ្លៃសម្រាប់ការកុម្ម៉ង់លើសពី $30 ទាំង ២៥ ខេត្តក្រុង",
+    f1_title: "PREMIUM FABRICS",
+    f1_desc: "សរសៃក្រណាត់ធម្មជាតិជ្រើសរើសយ៉ាងផ្ចិតផ្ចង់",
+    f2_title: "TIMELESS DESIGN",
+    f2_desc: "រចនាបថប្រណិតលើសពីភាពទាន់សម័យបណ្តោះអាសន្ន",
+    f3_title: "WORLDWIDE SHIPPING",
+    f3_desc: "ដឹកជញ្ជូនរហ័សដល់គ្រប់ខេត្តក្រុង និងទូទាំងសកលលោក",
 
     // Hero Tabs
     tab_mens: "ម៉ូដបុរស (Men's)",
