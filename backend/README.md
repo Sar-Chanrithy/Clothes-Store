@@ -1,162 +1,42 @@
-# 👗 Clothes Store — Backend API
+﻿# Rithy Store Laravel API
 
-A production-ready **FastAPI + PostgreSQL** REST API for a fashion/clothes e-commerce store.
+Laravel 12, PostgreSQL, and Sanctum. Requires PHP 8.2+, Composer, PostgreSQL, and PHP's pdo_pgsql extension.
 
----
+## Setup
 
-## 🏗️ Architecture
+Create a PostgreSQL database named `clothes_store`. Copy `.env.example` to `.env` if necessary and set DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME and DB_PASSWORD to your PostgreSQL credentials. Keep `.env` private. From the backend directory run:
 
-```
-backend/
-├── app/
-│   ├── api/
-│   │   └── v1/
-│   │       ├── endpoints/
-│   │       │   ├── auth.py       # Signup, Login, Refresh, /me
-│   │       │   ├── products.py   # Product CRUD
-│   │       │   ├── variants.py   # Variant CRUD (size × color × stock)
-│   │       │   ├── media.py      # Image upload & management
-│   │       │   └── users.py      # User profile
-│   │       └── router.py         # Aggregates all routers at /api/v1
-│   ├── core/
-│   │   ├── config.py             # Settings from .env
-│   │   ├── security.py           # Password hashing, JWT
-│   │   └── dependencies.py       # get_db, get_current_user, get_current_admin
-│   ├── db/
-│   │   ├── base.py               # SQLAlchemy DeclarativeBase
-│   │   ├── base_class.py         # Model imports for Alembic
-│   │   └── session.py            # Engine + SessionLocal
-│   ├── models/
-│   │   ├── user.py               # User ORM model
-│   │   ├── product.py            # Product ORM model
-│   │   ├── variant.py            # Variant ORM model
-│   │   └── media.py              # ProductMedia ORM model
-│   ├── schemas/
-│   │   ├── user.py               # Pydantic user + token schemas
-│   │   ├── product.py            # Pydantic product schemas
-│   │   ├── variant.py            # Pydantic variant schemas
-│   │   └── media.py              # Pydantic media schemas
-│   ├── services/
-│   │   ├── user_service.py       # User business logic
-│   │   ├── product_service.py    # Product business logic
-│   │   ├── variant_service.py    # Variant business logic
-│   │   └── media_service.py      # File upload + media logic
-│   └── main.py                   # FastAPI app entry point
-├── alembic/                      # Database migrations
-├── alembic.ini
-├── .env                          # Environment variables
-├── requirements.txt
-└── README.md
+```sh
+composer install
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
 ```
 
----
+The API is available at `http://127.0.0.1:8000/api`. Seeding imports the existing frontend catalogue with its product IDs and does not overwrite existing records on later runs. Data URL images are not imported.
 
-## 🚀 Quick Start
+## Endpoints
 
-### 1. Create & activate virtual environment
-```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
+Send `Accept: application/json`. Authenticated endpoints require `Authorization: Bearer <token>`; registration and login return `{user, token}`.
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/register` | name, email, password (at least 8 characters) |
+| POST | `/login` | email, password |
+| POST | `/logout` | Revoke current token |
+| GET/PATCH | `/me` | View or update name, phone, address |
+| GET | `/products` | List; optional search, category, per_page |
+| GET | `/products/{id}` | Product details |
+| POST/PUT/DELETE | `/products[/{id}]` | Manage products (admin only) |
+| GET | `/orders` and `/orders/{id}` | Current user's orders |
+| POST | `/orders` | Place an order (authenticated) |
+
+Example order:
+
+```json
+{"shipping_address":{"name":"Customer","address":"Street 1","city":"Phnom Penh","country":"Cambodia","phone":"012345678"},"shipping_method":"standard","items":[{"product_id":1,"quantity":1,"size":"M","color":"Black"}]}
 ```
 
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
+The server calculates prices, verifies stock, and records orders as pending. Tax is 8%; shipping is $0, $15, or $35 for standard, express, or overnight. No payment is collected. Do not send card details to this API. Grant admin access by setting `is_admin` to true for a trusted user directly in PostgreSQL. No default admin account is created.
 
-### 3. Configure environment
-Copy `.env` and update values as needed (already configured for Render PostgreSQL).
-
-### 4. Run database migrations
-```bash
-alembic upgrade head
-```
-
-### 5. Start the development server
-```bash
-uvicorn app.main:app --reload
-```
-
-Server runs at: **http://localhost:8000**  
-Interactive docs: **http://localhost:8000/docs**  
-ReDoc: **http://localhost:8000/redoc**
-
----
-
-## 📦 Database Models
-
-| Model | Key Fields |
-|-------|-----------|
-| `User` | id, full_name, email, hashed_password, is_active, is_admin |
-| `Product` | id, name, brand, category, description, price, discount_price |
-| `Variant` | id, product_id, size (XS/S/M/L/XL), color, color_hex, stock_quantity, sku |
-| `ProductMedia` | id, product_id, url, alt_text, is_primary, sort_order |
-
----
-
-## 🔐 Authentication
-
-All write endpoints require a Bearer token. Admin endpoints require `is_admin=True`.
-
-| Endpoint | Method | Auth | Description |
-|----------|--------|------|-------------|
-| `/api/v1/auth/signup` | POST | ❌ | Register user |
-| `/api/v1/auth/login` | POST | ❌ | Login → tokens |
-| `/api/v1/auth/refresh` | POST | ❌ | Refresh tokens |
-| `/api/v1/auth/me` | GET | ✅ | Current user |
-
----
-
-## 🛍️ API Endpoints
-
-### Products
-| Endpoint | Method | Auth | Description |
-|----------|--------|------|-------------|
-| `/api/v1/products` | GET | ❌ | List products (paginated, filterable) |
-| `/api/v1/products/{id}` | GET | ❌ | Product detail |
-| `/api/v1/products` | POST | 🔑 Admin | Create product |
-| `/api/v1/products/{id}` | PATCH | 🔑 Admin | Update product |
-| `/api/v1/products/{id}` | DELETE | 🔑 Admin | Delete product |
-
-### Variants
-| Endpoint | Method | Auth | Description |
-|----------|--------|------|-------------|
-| `/api/v1/variants/product/{product_id}` | GET | ❌ | List variants |
-| `/api/v1/variants/{id}` | GET | ❌ | Single variant |
-| `/api/v1/variants` | POST | 🔑 Admin | Create variant |
-| `/api/v1/variants/{id}` | PATCH | 🔑 Admin | Update variant |
-| `/api/v1/variants/{id}` | DELETE | 🔑 Admin | Delete variant |
-
-### Media
-| Endpoint | Method | Auth | Description |
-|----------|--------|------|-------------|
-| `/api/v1/media/product/{product_id}` | GET | ❌ | List product images |
-| `/api/v1/media/upload/{product_id}` | POST | 🔑 Admin | Upload image (multipart) |
-| `/api/v1/media/{id}` | PATCH | 🔑 Admin | Update image metadata |
-| `/api/v1/media/{id}` | DELETE | 🔑 Admin | Delete image |
-
----
-
-## 🗄️ Creating Your First Admin User
-
-After running migrations, you can manually set `is_admin=True` in the DB:
-
-```sql
-UPDATE users SET is_admin = true WHERE email = 'your@email.com';
-```
-
-Or use a one-off script:
-```bash
-python -c "
-from app.db.session import SessionLocal
-from app.models.user import User
-db = SessionLocal()
-user = db.query(User).filter(User.email=='your@email.com').first()
-user.is_admin = True
-db.commit()
-print('Done!')
-"
-```
+The React frontend still uses demo authentication, local products, and simulated checkout; it is not connected to this API and must not be treated as a real payment flow.
