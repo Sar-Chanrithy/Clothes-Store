@@ -281,7 +281,7 @@ const Cart = () => {
                           {addedId === product.id ? (
                             <>
                               <Check className="w-3.5 h-3.5" />
-                              Added
+                              Added!
                             </>
                           ) : (
                             "Add to Cart"
