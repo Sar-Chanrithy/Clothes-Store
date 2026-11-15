@@ -4,7 +4,7 @@
     "name": "Classic Oxford Long-Sleeve Shirt",
     "brand": "VELORA Collection",
     "price": 30.5,
-    "originalPrice": 45,
+    "originalPrice": 45.0,
     "rating": 4.9,
     "reviews": 142,
     "image": "/images/products/shirt-sky-blue.jpg",
@@ -46,6 +46,7 @@
       "Slate Grey"
     ],
     "inStock": true,
+    "stock": 15,
     "maxQuantity": 15,
     "sku": "VEL-0062",
     "description": "Crafted from 100% premium long-staple cotton, this timeless long-sleeve shirt offers an effortless balance between formal polish and casual comfort. Featuring a structured collar, chest pocket, and refined tailored silhouette.",
@@ -60,8 +61,8 @@
     "id": 64,
     "name": "Crisp Oxford Cotton Dress Shirt",
     "brand": "VELORA Collection",
-    "price": 28,
-    "originalPrice": 42,
+    "price": 28.0,
+    "originalPrice": 42.0,
     "rating": 4.9,
     "reviews": 168,
     "image": "/images/products/shirt-white-oxford.jpg",
@@ -94,6 +95,7 @@
       "White"
     ],
     "inStock": true,
+    "stock": 20,
     "maxQuantity": 20,
     "sku": "VEL-0064",
     "description": "The quintessential wardrobe staple. Pure white Oxford cotton shirt with button-down collar, durable mother-of-pearl buttons, and impeccable tailored drape.",
@@ -108,8 +110,8 @@
     "id": 65,
     "name": "Tailored Slim Fit Dress Shirt",
     "brand": "VELORA Collection",
-    "price": 29,
-    "originalPrice": 45,
+    "price": 29.0,
+    "originalPrice": 45.0,
     "rating": 4.9,
     "reviews": 114,
     "image": "/images/products/shirt-navy-blue.jpg",
@@ -142,6 +144,7 @@
       "Navy"
     ],
     "inStock": true,
+    "stock": 12,
     "maxQuantity": 12,
     "sku": "VEL-0065",
     "description": "Sophisticated deep navy dress shirt designed with a sharp modern fit. Sleek tonal buttons and clean front deliver an elevated aesthetic for evenings and business settings.",
@@ -156,8 +159,8 @@
     "id": 66,
     "name": "Washed Cotton Utility Overshirt",
     "brand": "VELORA Collection",
-    "price": 32,
-    "originalPrice": 48,
+    "price": 32.0,
+    "originalPrice": 48.0,
     "rating": 4.8,
     "reviews": 88,
     "image": "/images/products/shirt-slate-grey.jpg",
@@ -190,6 +193,7 @@
       "Slate Grey"
     ],
     "inStock": true,
+    "stock": 14,
     "maxQuantity": 14,
     "sku": "VEL-0066",
     "description": "Rugged yet refined, this washed slate grey overshirt features a vintage garment-washed patina, durable midweight cotton twill, and a utility chest pocket.",
@@ -198,6 +202,1488 @@
       "Vintage garment wash with subtle washed fade",
       "Reinforced workwear stitching and utility chest pocket",
       "Wear open as a lightweight jacket or buttoned as a statement shirt"
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Essential Black Crewneck Tees (2-Pack)",
+    "brand": "VELORA Basics",
+    "price": 18.5,
+    "originalPrice": 28.0,
+    "rating": 4.9,
+    "reviews": 154,
+    "image": "/images/products/tee-black-2pack.png",
+    "images": [
+      "/images/products/tee-black-2pack.png"
+    ],
+    "colorImages": {
+      "Black": "/images/products/tee-black-2pack.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 25,
+    "maxQuantity": 25,
+    "sku": "VEL-0067",
+    "description": "A value pack of two ultra-soft, breathable combed cotton crewneck t-shirts. Engineered with reinforced seams and pre-shrunk fabric for lasting comfort and shape retention.",
+    "details": [
+      "Pack of 2 premium black crewneck t-shirts",
+      "100% combed ringspun cotton for all-day comfort",
+      "Ribbed collar with shape-stay neck tape",
+      "Machine wash cold, tumble dry low"
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Two-Tone Raglan Baseball Long-Sleeve Tee",
+    "brand": "VELORA Collection",
+    "price": 21.5,
+    "originalPrice": 32.0,
+    "rating": 4.8,
+    "reviews": 92,
+    "image": "/images/products/tee-raglan-burgundy.png",
+    "images": [
+      "/images/products/tee-raglan-burgundy.png"
+    ],
+    "colorImages": {
+      "Burgundy": "/images/products/tee-raglan-burgundy.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Burgundy",
+      "White"
+    ],
+    "inStock": true,
+    "stock": 18,
+    "maxQuantity": 18,
+    "sku": "VEL-0068",
+    "description": "Classic retro athletic style featuring deep burgundy raglan sleeves and an off-white cotton core. Designed for easy layering and casual everyday wear.",
+    "details": [
+      "Vintage-inspired contrast raglan sleeve cut",
+      "Soft breathable combed cotton jersey",
+      "Overlock durable stitching on sleeves and hem",
+      "Comfort stretch crew collar"
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Sky Blue Striped Button-Down Casual Shirt",
+    "brand": "VELORA Collection",
+    "price": 27.5,
+    "originalPrice": 40.0,
+    "rating": 4.9,
+    "reviews": 110,
+    "image": "/images/products/shirt-striped-blue-white.png",
+    "images": [
+      "/images/products/shirt-striped-blue-white.png"
+    ],
+    "colorImages": {
+      "Blue": "/images/products/shirt-striped-blue-white.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Shirts",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Blue",
+      "White"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0069",
+    "description": "Refined vertical striped long-sleeve button-down shirt. Clean collar, pearlized buttons, and breathable lightweight poplin cotton make it ideal for office or weekend wear.",
+    "details": [
+      "100% fine yarn cotton poplin",
+      "Vertical fine pinstripe pattern in sky blue & crisp white",
+      "Point collar and adjustable buttoned cuffs",
+      "Regular modern fit suitable for tucking or untucked"
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Heavyweight Boxy Black Crewneck T-Shirt",
+    "brand": "VELORA Basics",
+    "price": 16.5,
+    "originalPrice": 24.0,
+    "rating": 4.8,
+    "reviews": 135,
+    "image": "/images/products/tee-black-crewneck.jpg",
+    "images": [
+      "/images/products/tee-black-crewneck.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/tee-black-crewneck.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 30,
+    "maxQuantity": 30,
+    "sku": "VEL-0070",
+    "description": "A structured, heavyweight 220 GSM cotton t-shirt with a relaxed boxy cut and a thick ribbed crewneck. Designed to hold its silhouette wash after wash.",
+    "details": [
+      "220 GSM heavyweight combed cotton",
+      "Reinforced drop shoulder seams",
+      "Pre-washed to resist shrinkage and color fading",
+      "Clean minimal aesthetic with zero side twisting"
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Classic Pique Knit Short-Sleeve Polo Shirt",
+    "brand": "VELORA Collection",
+    "price": 23.5,
+    "originalPrice": 35.0,
+    "rating": 4.9,
+    "reviews": 88,
+    "image": "/images/products/polo-white-pique.png",
+    "images": [
+      "/images/products/polo-white-pique.png"
+    ],
+    "colorImages": {
+      "White": "/images/products/polo-white-pique.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "stock": 22,
+    "maxQuantity": 22,
+    "sku": "VEL-0071",
+    "description": "Crisp white pique cotton polo shirt featuring a ribbed collar, two-button placket, and side-vent hem. The perfect smart-casual choice for any occasion.",
+    "details": [
+      "100% breathable honeycomb pique cotton",
+      "Ribbed knit collar and matching sleeve cuffs",
+      "Mother-of-pearl effect buttons",
+      "Split side vents for unrestricted movement"
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Premium Fleece Pullover Hoodie",
+    "brand": "VELORA Streetwear",
+    "price": 34.5,
+    "originalPrice": 52.0,
+    "rating": 4.9,
+    "reviews": 147,
+    "image": "/images/products/hoodie-white-fleece.png",
+    "images": [
+      "/images/products/hoodie-white-fleece.png"
+    ],
+    "colorImages": {
+      "White": "/images/products/hoodie-white-fleece.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Outerwear",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "stock": 15,
+    "maxQuantity": 15,
+    "sku": "VEL-0072",
+    "description": "Plush, heavy-gauge fleece pullover hoodie with a double-layered hood, matching tonal drawstrings, and a spacious front kangaroo pouch pocket.",
+    "details": [
+      "380 GSM brushed fleece cotton blend",
+      "Spacious double-layer drawstring hood",
+      "Kangaroo pocket with reinforced bartack corners",
+      "Heavyweight ribbed cuffs and waistband"
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Outclass Solid Light Blue Oxford Dress Shirt",
+    "brand": "VELORA Collection",
+    "price": 29.5,
+    "originalPrice": 45.0,
+    "rating": 4.9,
+    "reviews": 162,
+    "image": "/images/products/shirt-oxford-sky-blue.jpg",
+    "images": [
+      "/images/products/shirt-oxford-sky-blue.jpg"
+    ],
+    "colorImages": {
+      "Blue": "/images/products/shirt-oxford-sky-blue.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Shirts",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Blue"
+    ],
+    "inStock": true,
+    "stock": 19,
+    "maxQuantity": 19,
+    "sku": "VEL-0073",
+    "description": "An iconic light blue Oxford button-down shirt made from durable basketweave cotton. Features a chest pocket, curved hem, and refined collar roll.",
+    "details": [
+      "100% long-staple basketweave Oxford cotton",
+      "Button-down collar with clean architectural roll",
+      "Single chest pocket with double-needle topstitching",
+      "Easy-care, crease-resistant finish"
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Vintage Wash Blue Denim Trucker Jacket",
+    "brand": "VELORA Denim",
+    "price": 42.5,
+    "originalPrice": 65.0,
+    "rating": 4.9,
+    "reviews": 203,
+    "image": "/images/products/jacket-denim-trucker.jpg",
+    "images": [
+      "/images/products/jacket-denim-trucker.jpg"
+    ],
+    "colorImages": {
+      "Blue": "/images/products/jacket-denim-trucker.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Jackets",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Blue"
+    ],
+    "inStock": true,
+    "stock": 14,
+    "maxQuantity": 14,
+    "sku": "VEL-0074",
+    "description": "A timeless denim trucker jacket with vintage stonewashing, brass shank buttons, dual chest flap pockets, and side welt hand pockets.",
+    "details": [
+      "13 oz 100% durable cotton denim",
+      "Vintage stonewash with natural authentic fading",
+      "Embossed metal shank button hardware",
+      "Dual chest flap pockets and deep side hand pockets"
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Classic Straight-Leg Vintage Denim Jeans",
+    "brand": "VELORA Denim",
+    "price": 32.5,
+    "originalPrice": 48.0,
+    "rating": 4.8,
+    "reviews": 178,
+    "image": "/images/products/jeans-blue-denim.jpg",
+    "images": [
+      "/images/products/jeans-blue-denim.jpg"
+    ],
+    "colorImages": {
+      "Blue": "/images/products/jeans-blue-denim.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Denim",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Blue"
+    ],
+    "inStock": true,
+    "stock": 24,
+    "maxQuantity": 24,
+    "sku": "VEL-0075",
+    "description": "Classic mid-rise straight-leg jeans in a versatile medium blue wash with subtle whiskering and durable copper rivet detailing.",
+    "details": [
+      "99% cotton, 1% elastane for flexible comfort stretch",
+      "5-pocket styling with heavy-duty YKK zip fly",
+      "Reinforced belt loops and authentic copper rivet hardware",
+      "Mid-rise regular straight leg fit"
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Multi-Pocket Tactical Cargo Shorts",
+    "brand": "VELORA Outdoor",
+    "price": 22.5,
+    "originalPrice": 34.0,
+    "rating": 4.8,
+    "reviews": 95,
+    "image": "/images/products/shorts-cargo-khaki.jpg",
+    "images": [
+      "/images/products/shorts-cargo-khaki.jpg"
+    ],
+    "colorImages": {
+      "Khaki": "/images/products/shorts-cargo-khaki.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Khaki",
+      "Tan"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0076",
+    "description": "Durable ripstop cotton cargo shorts with multiple utility flap pockets, secure snap closures, and a comfortable relaxed cut for warm days.",
+    "details": [
+      "Durable 100% cotton ripstop weave",
+      "6-pocket utility cargo layout with snap flaps",
+      "Reinforced seat and pocket corners",
+      "10-inch inseam hitting right above the knee"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Slim-Fit Stretch Cotton Chino Pants",
+    "brand": "VELORA Collection",
+    "price": 29.5,
+    "originalPrice": 42.0,
+    "rating": 4.9,
+    "reviews": 142,
+    "image": "/images/products/pants-chino-khaki.jpg",
+    "images": [
+      "/images/products/pants-chino-khaki.jpg"
+    ],
+    "colorImages": {
+      "Khaki": "/images/products/pants-chino-khaki.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Khaki",
+      "Beige"
+    ],
+    "inStock": true,
+    "stock": 22,
+    "maxQuantity": 22,
+    "sku": "VEL-0077",
+    "description": "Versatile camel/khaki stretch chino pants cut in a modern slim profile. Finished with clean slant front pockets and buttoned rear welt pockets.",
+    "details": [
+      "98% combed cotton twill, 2% spandex for all-day comfort",
+      "Flat-front design with clean pressed line",
+      "Zip fly with horn button closure",
+      "Breathable for work, dining, and casual outings"
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Fleece Cuffed Athletic Jogger Pants",
+    "brand": "VELORA Sport",
+    "price": 26.5,
+    "originalPrice": 38.0,
+    "rating": 4.8,
+    "reviews": 124,
+    "image": "/images/products/sweatpants-grey-jogger.jpg",
+    "images": [
+      "/images/products/sweatpants-grey-jogger.jpg"
+    ],
+    "colorImages": {
+      "Gray": "/images/products/sweatpants-grey-jogger.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Gray"
+    ],
+    "inStock": true,
+    "stock": 25,
+    "maxQuantity": 25,
+    "sku": "VEL-0078",
+    "description": "Ultra-comfy heather grey brushed fleece sweatpants with an elastic drawstring waistband, deep side pockets, and snug ribbed ankle cuffs.",
+    "details": [
+      "Heather grey cotton-poly fleece blend with soft brushed lining",
+      "Encased elastic waistband with metal-tipped drawcord",
+      "Tapered leg with ribbed ankle cuffs",
+      "Deep side slash pockets and rear patch pocket"
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Minimalist French Terry Crewneck Sweatshirt",
+    "brand": "VELORA Basics",
+    "price": 28.5,
+    "originalPrice": 42.0,
+    "rating": 4.8,
+    "reviews": 106,
+    "image": "/images/products/sweatshirt-black-crewneck.jpg",
+    "images": [
+      "/images/products/sweatshirt-black-crewneck.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/sweatshirt-black-crewneck.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Outerwear",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 18,
+    "maxQuantity": 18,
+    "sku": "VEL-0079",
+    "description": "Clean black French terry crewneck sweatshirt. Features raglan-style shoulder seams, ribbed collar, cuffs, and hem for an effortless modern look.",
+    "details": [
+      "100% premium French terry loopback cotton",
+      "Ribbed crew neck with classic triangle stitch",
+      "Clean tonal flatlock seams throughout",
+      "Relaxed modern fit for versatile layering"
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Cuban Camp Collar Short-Sleeve Resort Shirt",
+    "brand": "VELORA Collection",
+    "price": 26.5,
+    "originalPrice": 38.0,
+    "rating": 4.9,
+    "reviews": 118,
+    "image": "/images/products/shirt-black-camp-collar.jpg",
+    "images": [
+      "/images/products/shirt-black-camp-collar.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/shirt-black-camp-collar.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Shirts",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0080",
+    "description": "Lightweight matte black camp collar shirt with contrast white buttons and relaxed short sleeves. Perfect for summer evenings and modern styling.",
+    "details": [
+      "Lightweight breathable rayon-cotton blend",
+      "Open Cuban camp collar",
+      "Straight-cut hem designed to be worn untucked",
+      "High-contrast white mother-of-pearl buttons"
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Vintage Melange Charcoal Crewneck T-Shirt",
+    "brand": "VELORA Basics",
+    "price": 17.5,
+    "originalPrice": 26.0,
+    "rating": 4.8,
+    "reviews": 89,
+    "image": "/images/products/tee-charcoal-melange.png",
+    "images": [
+      "/images/products/tee-charcoal-melange.png"
+    ],
+    "colorImages": {
+      "Charcoal": "/images/products/tee-charcoal-melange.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "New Arrival",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Charcoal",
+      "Gray"
+    ],
+    "inStock": true,
+    "stock": 24,
+    "maxQuantity": 24,
+    "sku": "VEL-0081",
+    "description": "Garment-washed charcoal grey melange t-shirt with a soft hand-feel and flattering tailored silhouette.",
+    "details": [
+      "Fine-gauge heather melange cotton yarn",
+      "Pre-washed vintage patina finish",
+      "Self-fabric reinforced collar tape",
+      "Regular comfort fit with smooth drape"
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Everyday Multi-Color Crewneck Tees (5-Pack)",
+    "brand": "VELORA Basics",
+    "price": 38.5,
+    "originalPrice": 58.0,
+    "rating": 4.9,
+    "reviews": 240,
+    "image": "/images/products/tee-multi-color-pack.jpg",
+    "images": [
+      "/images/products/tee-multi-color-pack.jpg"
+    ],
+    "colorImages": {
+      "Multi": "/images/products/tee-multi-color-pack.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Best Value",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Blue",
+      "White",
+      "Navy",
+      "Gray",
+      "Charcoal"
+    ],
+    "inStock": true,
+    "stock": 30,
+    "maxQuantity": 30,
+    "sku": "VEL-0082",
+    "description": "Ultimate capsule 5-pack of everyday cotton crewneck tees in essential shades: Slate Blue, Crisp White, Sky Blue, Charcoal, and Navy.",
+    "details": [
+      "Bundle of 5 assorted classic crewneck t-shirts",
+      "100% ringspun combed cotton",
+      "Reinforced neck ribbing and curved tail hem",
+      "Excellent colorfastness wash after wash"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Minimalist Embroidered Chest Logo Tee",
+    "brand": "VELORA Streetwear",
+    "price": 18.5,
+    "originalPrice": 28.0,
+    "rating": 4.7,
+    "reviews": 74,
+    "image": "/images/products/tee-white-minimal-logo.png",
+    "images": [
+      "/images/products/tee-white-minimal-logo.png"
+    ],
+    "colorImages": {
+      "White": "/images/products/tee-white-minimal-logo.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "New Arrival",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "stock": 22,
+    "maxQuantity": 22,
+    "sku": "VEL-0083",
+    "description": "Clean off-white graphic tee featuring a tasteful micro embroidery badge on the left chest. Soft, lightweight cotton for effortless everyday streetwear.",
+    "details": [
+      "100% organic soft cotton jersey",
+      "High-density monochrome chest embroidery",
+      "Drop shoulder relaxed silhouette",
+      "Ribbed crew collar that keeps its shape"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Streetwear Wide-Leg Piping Cargo Pants",
+    "brand": "VELORA Streetwear",
+    "price": 34.5,
+    "originalPrice": 50.0,
+    "rating": 4.9,
+    "reviews": 165,
+    "image": "/images/products/pants-streetwear-cargo-black.jpg",
+    "images": [
+      "/images/products/pants-streetwear-cargo-black.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/pants-streetwear-cargo-black.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 16,
+    "maxQuantity": 16,
+    "sku": "VEL-0084",
+    "description": "Modern wide-leg skate cargo pants in jet black with dynamic contrast white piping, side cargo pockets, and adjustable toggles at cuffs.",
+    "details": [
+      "Matte technical nylon-cotton blend",
+      "Reflective-edge contrast curved piping",
+      "Bellowed dual side cargo pockets",
+      "Bungee cord adjustable ankle cuffs"
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Tactical Vintage Washed Cargo Pants",
+    "brand": "VELORA Outdoor",
+    "price": 32.5,
+    "originalPrice": 48.0,
+    "rating": 4.8,
+    "reviews": 132,
+    "image": "/images/products/pants-vintage-cargo-khaki.jpg",
+    "images": [
+      "/images/products/pants-vintage-cargo-khaki.jpg"
+    ],
+    "colorImages": {
+      "Khaki": "/images/products/pants-vintage-cargo-khaki.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Khaki",
+      "Tan"
+    ],
+    "inStock": true,
+    "stock": 18,
+    "maxQuantity": 18,
+    "sku": "VEL-0085",
+    "description": "Authentic military-inspired cargo pants with drawstring waist ties, deep pleated leg pockets, distressed wash finish, and reinforced knee panels.",
+    "details": [
+      "Heavyweight 100% vintage-washed cotton",
+      "Internal drawcord waistband and cuff ties",
+      "Dual expandable flap cargo pockets",
+      "Articulated knee seams for durability"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Relaxed Fit Pleated Cotton Chinos",
+    "brand": "VELORA Collection",
+    "price": 31.5,
+    "originalPrice": 46.0,
+    "rating": 4.9,
+    "reviews": 98,
+    "image": "/images/products/pants-relaxed-ecru-chino.jpg",
+    "images": [
+      "/images/products/pants-relaxed-ecru-chino.jpg"
+    ],
+    "colorImages": {
+      "Beige": "/images/products/pants-relaxed-ecru-chino.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Beige",
+      "White"
+    ],
+    "inStock": true,
+    "stock": 15,
+    "maxQuantity": 15,
+    "sku": "VEL-0086",
+    "description": "Ecru / off-white wide pleated chinos with tailored drape. Pairs effortlessly with loafers or sneakers for a contemporary European silhouette.",
+    "details": [
+      "100% crisp cotton twill",
+      "Single front pleat styling",
+      "Belt loops and welt back pockets",
+      "Relaxed straight drape from hip to hem"
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Classic Tailored Straight Dress Trousers",
+    "brand": "VELORA Collection",
+    "price": 29.5,
+    "originalPrice": 44.0,
+    "rating": 4.8,
+    "reviews": 87,
+    "image": "/images/products/pants-tailored-grey-chino.jpg",
+    "images": [
+      "/images/products/pants-tailored-grey-chino.jpg"
+    ],
+    "colorImages": {
+      "Gray": "/images/products/pants-tailored-grey-chino.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Gray"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0087",
+    "description": "Light grey straight-leg dress trousers featuring crisp pressed creases, subtle stretch, and refined concealed hook-and-bar closure.",
+    "details": [
+      "Wrinkle-resistant poly-rayon stretch weave",
+      "Tailored straight leg fit",
+      "Discreet side slash pockets and rear button pockets",
+      "Clean pressed front crease"
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Smart Slim-Fit Stretch Black Trousers",
+    "brand": "VELORA Collection",
+    "price": 28.5,
+    "originalPrice": 42.0,
+    "rating": 4.9,
+    "reviews": 145,
+    "image": "/images/products/pants-slim-black-trouser.jpg",
+    "images": [
+      "/images/products/pants-slim-black-trouser.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/pants-slim-black-trouser.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 24,
+    "maxQuantity": 24,
+    "sku": "VEL-0088",
+    "description": "Sleek jet-black slim-fit trousers designed for work or formal events. Offers 4-way stretch comfort while holding a sharp, modern line.",
+    "details": [
+      "4-way stretch tailored tech fabric",
+      "Slim silhouette through thigh and leg opening",
+      "Side slant pockets and dual rear pockets",
+      "Machine washable easy-care fabric"
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Performance Commuter Stretch Chino",
+    "brand": "VELORA Collection",
+    "price": 30.5,
+    "originalPrice": 45.0,
+    "rating": 4.8,
+    "reviews": 112,
+    "image": "/images/products/pants-commuter-khaki.jpg",
+    "images": [
+      "/images/products/pants-commuter-khaki.jpg"
+    ],
+    "colorImages": {
+      "Khaki": "/images/products/pants-commuter-khaki.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Pants",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Khaki",
+      "Tan"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0089",
+    "description": "Tan khaki commuter chinos featuring technical stretch fabric, water-resistant finish, and an athletic tailored fit built for daily movement.",
+    "details": [
+      "Breathable moisture-wicking stretch twill",
+      "Hidden zip security pocket",
+      "Gusseted crotch for unrestricted motion",
+      "Tapered ankle cut"
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Vibrant Yellow Floral Belted Retro Dress",
+    "brand": "VELORA Femme",
+    "price": 36.5,
+    "originalPrice": 52.0,
+    "rating": 4.9,
+    "reviews": 118,
+    "image": "/images/products/dress-yellow-floral-belted.jpg",
+    "images": [
+      "/images/products/dress-yellow-floral-belted.jpg"
+    ],
+    "colorImages": {
+      "Yellow": "/images/products/dress-yellow-floral-belted.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Dresses",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Yellow"
+    ],
+    "inStock": true,
+    "stock": 16,
+    "maxQuantity": 16,
+    "sku": "VEL-0090",
+    "description": "Eye-catching retro A-line dress featuring bold blooming floral motifs in sunny yellow and white, complete with a high-shine black buckle belt.",
+    "details": [
+      "Vibrant pop-art floral print on smooth cotton sateen",
+      "Flattering strapless sweetheart neckline with structured boning",
+      "Includes detachable high-gloss patent belt with buckle",
+      "Full flared skirt with concealed back zip closure"
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Bohemian Tiered Lace Halter Maxi Dress",
+    "brand": "VELORA Femme",
+    "price": 39.5,
+    "originalPrice": 58.0,
+    "rating": 4.9,
+    "reviews": 142,
+    "image": "/images/products/dress-blue-lace-maxi.jpg",
+    "images": [
+      "/images/products/dress-blue-lace-maxi.jpg"
+    ],
+    "colorImages": {
+      "Blue": "/images/products/dress-blue-lace-maxi.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Dresses",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Blue"
+    ],
+    "inStock": true,
+    "stock": 14,
+    "maxQuantity": 14,
+    "sku": "VEL-0091",
+    "description": "Breezy azure blue maxi sundress featuring delicate lace insert panels, a tie-neck halter silhouette, and cascading ruffled tiers.",
+    "details": [
+      "100% lightweight crinkle rayon with breathable cotton lace trim",
+      "Adjustable halter tie neckline with plunging V-bodice",
+      "Multi-tiered flowing maxi length with pintuck detailing",
+      "Elasticized smocked back band for a custom fit"
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Emerald Satin Off-Shoulder Cocktail Mini Dress",
+    "brand": "VELORA Evening",
+    "price": 38.5,
+    "originalPrice": 55.0,
+    "rating": 4.9,
+    "reviews": 105,
+    "image": "/images/products/dress-green-satin-mini.jpg",
+    "images": [
+      "/images/products/dress-green-satin-mini.jpg"
+    ],
+    "colorImages": {
+      "Green": "/images/products/dress-green-satin-mini.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Dresses",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Green"
+    ],
+    "inStock": true,
+    "stock": 12,
+    "maxQuantity": 12,
+    "sku": "VEL-0092",
+    "description": "Lustrous emerald green silk-satin mini dress with an off-the-shoulder neckline, delicate black lace bust trim, and a body-skimming tailored cut.",
+    "details": [
+      "Rich lustrous satin with fluid drape and subtle stretch",
+      "Romantic off-the-shoulder sleeve drape with lace bodice detail",
+      "Fitted waistline contouring into a mini pencil hem",
+      "Hidden side invisible zipper"
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Timeless V-Neck Slip Silk Maxi Gown",
+    "brand": "VELORA Evening",
+    "price": 44.5,
+    "originalPrice": 65.0,
+    "rating": 4.9,
+    "reviews": 176,
+    "image": "/images/products/dress-black-slip-maxi.png",
+    "images": [
+      "/images/products/dress-black-slip-maxi.png"
+    ],
+    "colorImages": {
+      "Black": "/images/products/dress-black-slip-maxi.png"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Dresses",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 15,
+    "maxQuantity": 15,
+    "sku": "VEL-0093",
+    "description": "An iconic 90s-inspired minimalist black slip maxi gown with delicate spaghetti straps, sculpted plunging V-neckline, and an elongated floor-length drape.",
+    "details": [
+      "Premium heavyweight satin crepe cut on the bias",
+      "Double-layer bust lining with delicate non-stretch spaghetti straps",
+      "Dramatic fluted flare hem towards the floor",
+      "Perfect for galas, dinners, and evening occasions"
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Strong Independent Woman Slogan Tee",
+    "brand": "VELORA Graphics",
+    "price": 17.5,
+    "originalPrice": 25.0,
+    "rating": 4.8,
+    "reviews": 92,
+    "image": "/images/products/tee-strong-independent-woman.jpg",
+    "images": [
+      "/images/products/tee-strong-independent-woman.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/tee-strong-independent-woman.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Tops",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 25,
+    "maxQuantity": 25,
+    "sku": "VEL-0094",
+    "description": "Empowering statement tee in black cotton jersey, featuring bold typography: 'STRONG INDEPENDENT Woman WHO DON'T NEED NO MAN' in red and white.",
+    "details": [
+      "100% soft ringspun combed cotton",
+      "High-durability screen print in crimson red & crisp white",
+      "Classic relaxed crewneck fit",
+      "Double-needle neck and hem construction"
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Sarcastic Daily Mood Graphic Tee",
+    "brand": "VELORA Graphics",
+    "price": 17.5,
+    "originalPrice": 25.0,
+    "rating": 4.8,
+    "reviews": 84,
+    "image": "/images/products/tee-one-person-a-day.jpg",
+    "images": [
+      "/images/products/tee-one-person-a-day.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/tee-one-person-a-day.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Tops",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 22,
+    "maxQuantity": 22,
+    "sku": "VEL-0095",
+    "description": "Witty slogan t-shirt: 'I Can Only Please One Person a Day. Today Isn't Your Day. Tomorrow Doesn't Look Good Either.' Soft and comfortable.",
+    "details": [
+      "100% breathable lightweight combed cotton",
+      "Two-tone typography print with vintage flourish accents",
+      "Tear-away neck label for scratch-free comfort",
+      "Casual relaxed silhouette"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Be A Difficult Woman Illustrated Tee",
+    "brand": "VELORA Graphics",
+    "price": 18.5,
+    "originalPrice": 26.0,
+    "rating": 4.9,
+    "reviews": 114,
+    "image": "/images/products/tee-difficult-woman.jpg",
+    "images": [
+      "/images/products/tee-difficult-woman.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/tee-difficult-woman.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Tops",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 28,
+    "maxQuantity": 28,
+    "sku": "VEL-0096",
+    "description": "Cute artistic t-shirt featuring a spiral notepad doodle reading 'BE A difficult woman' surrounded by pastel retro flowers and a purple pencil.",
+    "details": [
+      "100% premium combed jersey cotton",
+      "Charming colorful pastel illustration on jet black base",
+      "Pre-shrunk fabric with reinforced shoulder-to-shoulder tape",
+      "Regular women's relaxed fit"
     ]
   }
 ]
