@@ -1688,6 +1688,400 @@ export const products = [
       "Pre-shrunk fabric with reinforced shoulder-to-shoulder tape",
       "Regular women's relaxed fit"
     ]
+  },
+  {
+    "id": 97,
+    "name": "Sculpting Corset Halter Neck Top",
+    "brand": "VELORA Femme",
+    "price": 22.5,
+    "originalPrice": 32.0,
+    "rating": 4.9,
+    "reviews": 96,
+    "image": "/images/products/top-brown-corset-halter.jpg",
+    "images": [
+      "/images/products/top-brown-corset-halter.jpg"
+    ],
+    "colorImages": {
+      "Brown": "/images/products/top-brown-corset-halter.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Tops",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Brown"
+    ],
+    "inStock": true,
+    "stock": 18,
+    "maxQuantity": 18,
+    "sku": "VEL-0097",
+    "description": "Chocolate brown sculpted halter corset top featuring contoured vertical seam boning, sweetheart V-neck, and smooth shapewear compression fabric.",
+    "details": [
+      "Ultra-flattering corset bodice with vertical structural seaming",
+      "Supportive halter neck strap",
+      "Double-layered compressive stretch fabric",
+      "V-curved hemline contouring the waist"
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Deep Plunge Halter Sleeveless Bodice Top",
+    "brand": "VELORA Femme",
+    "price": 19.5,
+    "originalPrice": 28.0,
+    "rating": 4.8,
+    "reviews": 78,
+    "image": "/images/products/top-brown-plunge-halter.png",
+    "images": [
+      "/images/products/top-brown-plunge-halter.png"
+    ],
+    "colorImages": {
+      "Brown": "/images/products/top-brown-plunge-halter.png"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Tops",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Brown"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0098",
+    "description": "Minimalist dark espresso halter top with an elongated deep plunge scoop neckline and a seamless second-skin fit.",
+    "details": [
+      "Buttery soft seamless microfiber fabric",
+      "Deep plunge scoop front with wide halter neck band",
+      "Open back silhouette",
+      "Anti-roll hem finish"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Essential Racerback Cotton Tank Top",
+    "brand": "VELORA Basics",
+    "price": 14.5,
+    "originalPrice": 20.0,
+    "rating": 4.9,
+    "reviews": 130,
+    "image": "/images/products/top-white-racerback-tank.png",
+    "images": [
+      "/images/products/top-white-racerback-tank.png"
+    ],
+    "colorImages": {
+      "White": "/images/products/top-white-racerback-tank.png"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Tops",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "stock": 35,
+    "maxQuantity": 35,
+    "sku": "VEL-0099",
+    "description": "Crisp white classic racerback ribbed tank top. Made from ultra-breathable stretch cotton with a curved scoop hem, perfect for layering or gym-to-street wear.",
+    "details": [
+      "95% ribbed cotton, 5% spandex for flexible recovery",
+      "Athletic racerback design offering full range of motion",
+      "Scoop neckline with bound trim",
+      "Curved hemline designed to stay tucked or sit naturally"
+    ]
+  },
+  {
+    "id": 100,
+    "name": "High-Waisted Pleated Wide-Leg Trousers",
+    "brand": "VELORA Femme",
+    "price": 32.5,
+    "originalPrice": 46.0,
+    "rating": 4.9,
+    "reviews": 148,
+    "image": "/images/products/pants-women-pleated-wide-leg.jpg",
+    "images": [
+      "/images/products/pants-women-pleated-wide-leg.jpg"
+    ],
+    "colorImages": {
+      "Taupe": "/images/products/pants-women-pleated-wide-leg.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Pants",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Beige",
+      "Tan"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0100",
+    "description": "Viral high-waisted wide-leg dress trousers featuring sharp double front pleats, elastic back waist comfort, and an effortless fluid drape.",
+    "details": [
+      "Flowy poly-viscose blend with elegant drape and crease resistance",
+      "High-rise fit with double front pleats",
+      "Comfort elastic back waistband with button and zip fly front",
+      "Deep side slash pockets and wide straight leg profile"
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Minimalist Tailored Straight Office Trousers",
+    "brand": "VELORA Femme",
+    "price": 29.5,
+    "originalPrice": 42.0,
+    "rating": 4.8,
+    "reviews": 92,
+    "image": "/images/products/pants-women-tailored-taupe.jpg",
+    "images": [
+      "/images/products/pants-women-tailored-taupe.jpg"
+    ],
+    "colorImages": {
+      "Beige": "/images/products/pants-women-tailored-taupe.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Pants",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Beige",
+      "Tan"
+    ],
+    "inStock": true,
+    "stock": 24,
+    "maxQuantity": 24,
+    "sku": "VEL-0101",
+    "description": "Clean warm beige straight-leg trousers tailored for everyday office chic. Features a smooth flat waistband, discreet belt loops, and subtle stretch.",
+    "details": [
+      "Midweight stretch twill with a polished matte finish",
+      "Tailored straight silhouette from hip to hem",
+      "Flat waistband with belt loops and hidden hook closure",
+      "Versatile styling for office, brunch, or casual chic wear"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Gothic Tapestry Embroidered Velvet Mini Skirt",
+    "brand": "VELORA Studio",
+    "price": 26.5,
+    "originalPrice": 38.0,
+    "rating": 4.9,
+    "reviews": 112,
+    "image": "/images/products/skirt-black-velvet-embroidered.jpg",
+    "images": [
+      "/images/products/skirt-black-velvet-embroidered.jpg"
+    ],
+    "colorImages": {
+      "Black": "/images/products/skirt-black-velvet-embroidered.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Skirts",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "inStock": true,
+    "stock": 16,
+    "maxQuantity": 16,
+    "sku": "VEL-0102",
+    "description": "Enchanting black crushed velvet mini skirt embellished with intricate botanical and serpent tapestry embroidery. Features a body-skimming A-line cut.",
+    "details": [
+      "Plush stretch velvet base with detailed metallic yarn embroidery",
+      "High-rise structured waistline with concealed side zip",
+      "Soft inner lining for anti-static comfort",
+      "Versatile styling with chunky boots, cardigans, or crop tops"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Vintage Light Wash A-Line Denim Mini Skirt",
+    "brand": "VELORA Denim",
+    "price": 24.5,
+    "originalPrice": 35.0,
+    "rating": 4.8,
+    "reviews": 126,
+    "image": "/images/products/skirt-blue-denim-aline.jpg",
+    "images": [
+      "/images/products/skirt-blue-denim-aline.jpg"
+    ],
+    "colorImages": {
+      "Blue": "/images/products/skirt-blue-denim-aline.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Skirts",
+    "badge": "Best Seller",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Blue"
+    ],
+    "inStock": true,
+    "stock": 22,
+    "maxQuantity": 22,
+    "sku": "VEL-0103",
+    "description": "Everyday summer essential A-line denim skirt in a light stonewash tint. Fitted through the waist with functional back patch pockets and contrast tobacco stitching.",
+    "details": [
+      "100% durable cotton denim with authentic stonewash patina",
+      "High-rise waist with belt loops and zip fly button closure",
+      "Flattering flared A-line silhouette",
+      "Functional dual back spade pockets"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "High-Waisted Knife-Pleated Tennis Skirt",
+    "brand": "VELORA Sport",
+    "price": 21.5,
+    "originalPrice": 30.0,
+    "rating": 4.9,
+    "reviews": 185,
+    "image": "/images/products/skirt-white-pleated-tennis.jpg",
+    "images": [
+      "/images/products/skirt-white-pleated-tennis.jpg"
+    ],
+    "colorImages": {
+      "White": "/images/products/skirt-white-pleated-tennis.jpg"
+    },
+    "category": "Women's Fashion",
+    "subCategory": "Skirts",
+    "badge": "Popular",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "stock": 30,
+    "maxQuantity": 30,
+    "sku": "VEL-0104",
+    "description": "Crisp bright white high-waisted pleated tennis mini skirt. Features sharp thermal-set knife pleats, side zipper closure, and built-in safety shorts.",
+    "details": [
+      "Stain-resistant poly-twill that holds crisp knife pleats wash after wash",
+      "Comfortable built-in stretch safety shorts lining",
+      "Structured fitted waistband with hidden side zipper",
+      "Classic preppy aesthetic for casual outings and sporty chic looks"
+    ]
   }
 ];
 
