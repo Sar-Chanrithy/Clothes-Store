@@ -1,0 +1,203 @@
+[
+  {
+    "id": 62,
+    "name": "Classic Oxford Long-Sleeve Shirt",
+    "brand": "VELORA Collection",
+    "price": 30.5,
+    "originalPrice": 45,
+    "rating": 4.9,
+    "reviews": 142,
+    "image": "/images/products/shirt-sky-blue.jpg",
+    "images": [
+      "/images/products/shirt-sky-blue.jpg",
+      "/images/products/shirt-white-oxford.jpg",
+      "/images/products/shirt-navy-blue.jpg",
+      "/images/products/shirt-slate-grey.jpg"
+    ],
+    "colorImages": {
+      "Sky Blue": "/images/products/shirt-sky-blue.jpg",
+      "White": "/images/products/shirt-white-oxford.jpg",
+      "Navy": "/images/products/shirt-navy-blue.jpg",
+      "Slate Grey": "/images/products/shirt-slate-grey.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Shirts",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Sky Blue",
+      "White",
+      "Navy",
+      "Slate Grey"
+    ],
+    "inStock": true,
+    "maxQuantity": 15,
+    "sku": "VEL-0062",
+    "description": "Crafted from 100% premium long-staple cotton, this timeless long-sleeve shirt offers an effortless balance between formal polish and casual comfort. Featuring a structured collar, chest pocket, and refined tailored silhouette.",
+    "details": [
+      "100% premium breathable combed cotton",
+      "Available in 4 essential colors: Sky Blue, Crisp White, Navy Blue, and Slate Grey",
+      "Buttoned barrel cuffs with contrast inner trim",
+      "Tailored fit with curved hem suitable for tucking or untucked wear"
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Crisp Oxford Cotton Dress Shirt",
+    "brand": "VELORA Collection",
+    "price": 28,
+    "originalPrice": 42,
+    "rating": 4.9,
+    "reviews": 168,
+    "image": "/images/products/shirt-white-oxford.jpg",
+    "images": [
+      "/images/products/shirt-white-oxford.jpg"
+    ],
+    "colorImages": {
+      "White": "/images/products/shirt-white-oxford.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Shirts",
+    "badge": "Essential",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "maxQuantity": 20,
+    "sku": "VEL-0064",
+    "description": "The quintessential wardrobe staple. Pure white Oxford cotton shirt with button-down collar, durable mother-of-pearl buttons, and impeccable tailored drape.",
+    "details": [
+      "Heavyweight Oxford weave 100% cotton",
+      "Button-down collar that stays crisp throughout the day",
+      "Front chest pocket and box pleat for ease of movement",
+      "Easy-iron finish for effortless daily maintenance"
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Tailored Slim Fit Dress Shirt",
+    "brand": "VELORA Collection",
+    "price": 29,
+    "originalPrice": 45,
+    "rating": 4.9,
+    "reviews": 114,
+    "image": "/images/products/shirt-navy-blue.jpg",
+    "images": [
+      "/images/products/shirt-navy-blue.jpg"
+    ],
+    "colorImages": {
+      "Navy": "/images/products/shirt-navy-blue.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Shirts",
+    "badge": "Premium",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Navy"
+    ],
+    "inStock": true,
+    "maxQuantity": 12,
+    "sku": "VEL-0065",
+    "description": "Sophisticated deep navy dress shirt designed with a sharp modern fit. Sleek tonal buttons and clean front deliver an elevated aesthetic for evenings and business settings.",
+    "details": [
+      "Smooth high-thread-count cotton blend with slight stretch",
+      "Deep navy colorway resistant to fading",
+      "Structured spread collar with back darts for a sculpted silhouette",
+      "Seamless clean-finish seams"
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Washed Cotton Utility Overshirt",
+    "brand": "VELORA Collection",
+    "price": 32,
+    "originalPrice": 48,
+    "rating": 4.8,
+    "reviews": 88,
+    "image": "/images/products/shirt-slate-grey.jpg",
+    "images": [
+      "/images/products/shirt-slate-grey.jpg"
+    ],
+    "colorImages": {
+      "Slate Grey": "/images/products/shirt-slate-grey.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Shirts",
+    "badge": "New Arrival",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Slate Grey"
+    ],
+    "inStock": true,
+    "maxQuantity": 14,
+    "sku": "VEL-0066",
+    "description": "Rugged yet refined, this washed slate grey overshirt features a vintage garment-washed patina, durable midweight cotton twill, and a utility chest pocket.",
+    "details": [
+      "Midweight 100% garment-dyed cotton twill",
+      "Vintage garment wash with subtle washed fade",
+      "Reinforced workwear stitching and utility chest pocket",
+      "Wear open as a lightweight jacket or buttoned as a statement shirt"
+    ]
+  }
+]
