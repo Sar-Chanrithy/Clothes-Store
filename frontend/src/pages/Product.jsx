@@ -169,7 +169,7 @@ const Product = () => {
     return product.image;
   };
 
-  // Build image list dynamically with Front & Back views
+  // Build image list dynamically and assign accurate semantic labels
   const { displayImages, viewLabels } = useMemo(() => {
     if (!product) return { displayImages: [], viewLabels: [] };
 
@@ -183,21 +183,65 @@ const Product = () => {
       baseImages = [activeColorImg, ...baseImages.filter((img) => img !== activeColorImg)];
     }
 
-    const labels = (product.viewLabels && product.viewLabels.length >= baseImages.length)
-      ? product.viewLabels
-      : baseImages.map((_, i) => (i === 0 ? "Front View" : i === 1 ? "Back View" : `Detail ${i + 1}`));
+    const labels = baseImages.map((imgSrc, i) => {
+      // 1. Explicit viewLabels on product
+      if (product.viewLabels && product.viewLabels[i]) {
+        return product.viewLabels[i];
+      }
+
+      // 2. Filename explicitly indicates a back view
+      const lower = (imgSrc || "").toLowerCase();
+      if (lower.includes("-back.") || lower.includes("_back.") || lower.endsWith("-back") || lower.includes("back-view")) {
+        return "Back View";
+      }
+
+      // 3. Match image path against product.colorImages
+      if (product.colorImages) {
+        const colorEntry = Object.entries(product.colorImages).find(
+          ([, path]) => path === imgSrc
+        );
+        if (colorEntry) {
+          return `${colorEntry[0]} • Front`;
+        }
+      }
+
+      // 4. Match against product.colors 1-to-1 if count matches
+      if (product.colors && product.colors.length === baseImages.length && product.colors[i]) {
+        const cName = typeof product.colors[i] === "string" ? product.colors[i] : product.colors[i].name;
+        return `${cName} • Front`;
+      }
+
+      // 5. Default
+      return i === 0 ? "Front View" : `View ${i + 1}`;
+    });
 
     return { displayImages: baseImages, viewLabels: labels };
   }, [product, selectedColor]);
 
   const handleColorChange = (colorName) => {
     setSelectedColor(colorName);
-    setSelectedImage(0);
+    const colorImg = getColorImage(colorName);
+    if (colorImg) {
+      const idx = displayImages.indexOf(colorImg);
+      setSelectedImage(idx !== -1 ? idx : 0);
+    } else {
+      setSelectedImage(0);
+    }
   };
 
   const handleThumbnailClick = (index) => {
     setSelectedImage(index);
-    if (product?.colors && product.colors[index] && product.images?.length > 1) {
+    const clickedImg = displayImages[index];
+
+    // Synchronize selectedColor if this image belongs to a specific color variant
+    if (product?.colorImages && clickedImg) {
+      const matched = Object.entries(product.colorImages).find(
+        ([, path]) => path === clickedImg
+      );
+      if (matched && matched[0] !== selectedColor) {
+        setSelectedColor(matched[0]);
+      }
+    } else if (product?.colors && product.colors[index] && product.images?.length > 1) {
       const matchedColor = typeof product.colors[index] === "string" ? product.colors[index] : product.colors[index].name;
       if (matchedColor && matchedColor !== selectedColor) {
         setSelectedColor(matchedColor);
