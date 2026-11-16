@@ -39,15 +39,62 @@ const Hero = ({ showFeatures = true }) => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
 
+  // Auto-scroll slides horizontally every 3.5 seconds
   useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % showroomSlides.length);
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isPaused, showroomSlides.length]);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [currentSlide, showroomSlides.length]);
+
+  const nextSlide = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setCurrentSlide((prev) => (prev + 1) % showroomSlides.length);
+  };
+
+  const prevSlide = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setCurrentSlide((prev) => (prev === 0 ? showroomSlides.length - 1 : prev - 1));
+  };
+
+  const goToSlide = (idx, e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setCurrentSlide(idx);
+  };
+
+  // Touch swipe support for mobile/tablet
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 45;
+    const isRightSwipe = distance < -45;
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
 
   return (
     <div className="relative bg-[#0c0c0e] dark:bg-neutral-950 text-white overflow-hidden transition-colors duration-300">
@@ -136,90 +183,86 @@ const Hero = ({ showFeatures = true }) => {
 
             </div>
 
-            {/* Right Column: High-Resolution Boutique Storefront Card Carousel */}
+            {/* Right Column: High-Resolution Boutique Storefront Card Carousel with Horizontal Auto-Slide */}
             <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end">
               <div
                 className="group relative block w-full max-w-[540px] aspect-square rounded-2xl overflow-hidden border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(194,166,119,0.15)] transition-all duration-700 hover:border-[#c2a677]/60 hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_60px_rgba(194,166,119,0.25)] select-none"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
               >
-                {/* Store Images with Cross-Fade Transition */}
-                <Link to="/shop" className="block w-full h-full cursor-pointer" aria-label="Visit Boutique Store">
-                  {showroomSlides.map((slide, index) => (
-                    <div
-                      key={index}
-                      className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                        currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-                      }`}
-                    >
-                      <picture>
-                        <source srcSet={slide.imageWebp} type="image/webp" />
-                        <img
-                          src={slide.imageJpg}
-                          alt={slide.alt}
-                          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
-                          loading={index === 0 ? "eager" : "lazy"}
-                        />
-                      </picture>
-                    </div>
-                  ))}
+                {/* Horizontal Sliding Track */}
+                <Link
+                  to="/shop"
+                  className="block w-full h-full cursor-pointer overflow-hidden relative"
+                  aria-label="Visit Boutique Store"
+                >
+                  <div
+                    className="flex w-full h-full transition-transform duration-700 ease-in-out"
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                  >
+                    {showroomSlides.map((slide, index) => (
+                      <div
+                        key={index}
+                        className="w-full h-full min-w-full flex-shrink-0 relative"
+                      >
+                        <picture>
+                          <source srcSet={slide.imageWebp} type="image/webp" />
+                          <img
+                            src={slide.imageJpg}
+                            alt={slide.alt}
+                            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                            loading={index === 0 ? "eager" : "lazy"}
+                          />
+                        </picture>
+                      </div>
+                    ))}
+                  </div>
 
                   {/* Subtle vignette on edges */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none z-10" />
                 </Link>
 
                 {/* Left Arrow Button */}
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentSlide((prev) => (prev === 0 ? showroomSlides.length - 1 : prev - 1));
-                  }}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/60 hover:bg-[#c2a677] text-white hover:text-neutral-950 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg cursor-pointer"
+                  onClick={prevSlide}
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-[#c2a677] text-white hover:text-neutral-950 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg cursor-pointer"
                   aria-label="Previous showroom photo"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-5 h-5" />
                 </button>
 
                 {/* Right Arrow Button */}
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentSlide((prev) => (prev + 1) % showroomSlides.length);
-                  }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/60 hover:bg-[#c2a677] text-white hover:text-neutral-950 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg cursor-pointer"
+                  onClick={nextSlide}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-[#c2a677] text-white hover:text-neutral-950 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg cursor-pointer"
                   aria-label="Next showroom photo"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-5 h-5" />
                 </button>
 
                 {/* Bottom Overlay Label & Navigation Dots */}
-                <div className="absolute bottom-4 inset-x-4 z-20 flex items-center justify-between px-4 py-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 text-white">
-                  <div>
-                    <p className="text-[11px] font-mono tracking-widest text-[#c2a677] uppercase transition-all duration-300">
+                <div className="absolute bottom-4 inset-x-4 z-20 flex items-center justify-between px-4 py-2.5 rounded-xl bg-black/65 backdrop-blur-md border border-white/15 text-white shadow-xl">
+                  <div className="min-w-0 pr-2">
+                    <p className="text-[11px] font-mono tracking-widest text-[#c2a677] uppercase transition-all duration-300 truncate">
                       {showroomSlides[currentSlide].tag}
                     </p>
-                    <p className="text-xs font-semibold tracking-wide transition-all duration-300">
+                    <p className="text-xs font-semibold tracking-wide transition-all duration-300 truncate">
                       {showroomSlides[currentSlide].title}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     {/* Slide Dots Indicator */}
                     <div className="flex items-center gap-1.5 mr-1">
                       {showroomSlides.map((_, idx) => (
                         <button
                           key={idx}
                           type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setCurrentSlide(idx);
-                          }}
+                          onClick={(e) => goToSlide(idx, e)}
                           className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                            currentSlide === idx ? "w-5 bg-[#c2a677]" : "w-1.5 bg-white/40 hover:bg-white/80"
+                            currentSlide === idx ? "w-6 bg-[#c2a677]" : "w-1.5 bg-white/40 hover:bg-white/80"
                           }`}
                           aria-label={`Go to showroom photo ${idx + 1}`}
                         />
