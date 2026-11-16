@@ -16,6 +16,7 @@ import {
   Shield,
   Award,
   Share2,
+  ChevronLeft,
   ChevronRight,
   ChevronDown,
   ChevronUp,
@@ -324,49 +325,96 @@ const Product = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
           
-          {/* ===== LEFT COLUMN: Arch-Top Product Gallery (Front & Back Views) ===== */}
+          {/* ===== LEFT COLUMN: Editorial Luxury Product Gallery ===== */}
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col">
             
-            {/* The Signature Arch Frame (Matches Image 1 reference) */}
-            <div className="relative w-full rounded-t-[100px] sm:rounded-t-[140px] rounded-b-3xl overflow-hidden bg-[#f4f2ee] dark:bg-[#151518] border border-neutral-200/80 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-center p-6 sm:p-12 min-h-[440px] sm:min-h-[520px] transition-all">
+            {/* The Signature Editorial Gallery Card (4:5 Portrait Ratio) */}
+            <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden bg-neutral-100 dark:bg-[#18181b] border border-neutral-200/80 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] group transition-all">
               
-              {/* Product Garment Image (object-contain so collars, sleeves and hem are never cut off) */}
-              <img
-                key={activeImageSrc}
-                src={activeImageSrc}
-                alt={product.name}
-                className="w-full h-full max-h-[460px] object-contain transition-transform duration-700 ease-out hover:scale-105 select-none"
-                onError={(e) => {
-                  e.target.src = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80";
-                }}
-              />
+              {/* Product Garment Image Presentation */}
+              {activeImageSrc && activeImageSrc.toLowerCase().endsWith(".png") ? (
+                <div className="w-full h-full flex items-center justify-center p-8 sm:p-12 bg-gradient-to-b from-neutral-50 to-neutral-100 dark:from-[#18181b] dark:to-[#121215]">
+                  <img
+                    key={activeImageSrc}
+                    src={activeImageSrc}
+                    alt={product.name}
+                    className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-700 ease-out group-hover:scale-105 select-none"
+                    onError={(e) => {
+                      e.target.src = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80";
+                    }}
+                  />
+                </div>
+              ) : (
+                <img
+                  key={activeImageSrc}
+                  src={activeImageSrc}
+                  alt={product.name}
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 select-none"
+                  onError={(e) => {
+                    e.target.src = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80";
+                  }}
+                />
+              )}
 
-              {/* Top-Left Badge (Discount / Special Drop) */}
-              {product.drop ? (
-                <span className="absolute top-6 left-6 px-3.5 py-1.5 bg-neutral-950/80 dark:bg-white/90 text-white dark:text-neutral-950 text-[11px] font-mono tracking-widest uppercase rounded-full shadow-md backdrop-blur-md">
-                  {product.badge || "SPECIAL DROP"}
-                </span>
-              ) : product.originalPrice && product.originalPrice > product.price ? (
-                <span className="absolute top-6 left-6 px-3.5 py-1.5 bg-[#c2a677] text-neutral-950 text-xs font-bold uppercase rounded-full shadow-md">
-                  Save ${(product.originalPrice - product.price).toFixed(2)}
-                </span>
-              ) : product.badge ? (
-                <span className="absolute top-6 left-6 px-3.5 py-1.5 bg-neutral-950/80 dark:bg-white/90 text-white dark:text-neutral-950 text-[11px] font-mono tracking-widest uppercase rounded-full shadow-md backdrop-blur-md">
-                  {product.badge}
-                </span>
-              ) : null}
+              {/* Floating Prev / Next Navigation Arrows on Hover (when multiple photos exist) */}
+              {displayImages.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleThumbnailClick((selectedImage - 1 + displayImages.length) % displayImages.length);
+                    }}
+                    className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-white/85 dark:bg-neutral-900/85 backdrop-blur-md text-neutral-800 dark:text-neutral-200 opacity-0 group-hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-300 shadow-xl cursor-pointer border border-white/60 dark:border-white/10 z-20"
+                    title="Previous image"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleThumbnailClick((selectedImage + 1) % displayImages.length);
+                    }}
+                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-white/85 dark:bg-neutral-900/85 backdrop-blur-md text-neutral-800 dark:text-neutral-200 opacity-0 group-hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-300 shadow-xl cursor-pointer border border-white/60 dark:border-white/10 z-20"
+                    title="Next image"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
 
-              {/* Top-Right Wishlist Heart */}
+              {/* Top-Left Badge (Discount / Special Drop) — Positioned with clean breathing room */}
+              <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 flex flex-col gap-1.5 pointer-events-none">
+                {product.drop ? (
+                  <span className="px-3.5 py-1.5 bg-neutral-950/85 dark:bg-white/95 text-white dark:text-neutral-950 text-[11px] font-mono tracking-widest uppercase rounded-full shadow-lg backdrop-blur-md border border-white/15 dark:border-neutral-200 font-semibold">
+                    {product.badge || "SPECIAL DROP"}
+                  </span>
+                ) : product.originalPrice && product.originalPrice > product.price ? (
+                  <span className="px-3.5 py-1.5 bg-[#c2a677] text-neutral-950 text-xs font-bold uppercase rounded-full shadow-lg backdrop-blur-md flex items-center gap-1.5 tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-950"></span>
+                    Save ${(product.originalPrice - product.price).toFixed(2)}
+                  </span>
+                ) : product.badge ? (
+                  <span className="px-3.5 py-1.5 bg-neutral-950/85 dark:bg-white/95 text-white dark:text-neutral-950 text-[11px] font-mono tracking-widest uppercase rounded-full shadow-lg backdrop-blur-md border border-white/15 dark:border-neutral-200 font-semibold">
+                    {product.badge}
+                  </span>
+                ) : null}
+              </div>
+
+              {/* Top-Right Wishlist Heart Button */}
               <button
                 type="button"
                 onClick={() => toggleWishlist(product.id)}
-                className="absolute top-6 right-6 p-3 rounded-full bg-white/90 dark:bg-neutral-800/90 text-neutral-800 dark:text-neutral-200 hover:scale-110 shadow-md backdrop-blur-md transition-all cursor-pointer border border-neutral-200/50 dark:border-white/10"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 p-3 rounded-full bg-white/85 dark:bg-neutral-900/85 backdrop-blur-md text-neutral-800 dark:text-neutral-200 hover:scale-110 active:scale-95 shadow-lg transition-all duration-300 cursor-pointer border border-white/60 dark:border-white/10 z-20"
                 title="Save to wishlist"
                 aria-label="Save to wishlist"
               >
                 <Heart
                   className={`w-5 h-5 transition-colors ${
-                    isFavorited ? "fill-red-500 text-red-500" : "text-neutral-700 dark:text-neutral-300"
+                    isFavorited ? "fill-rose-500 text-rose-500" : "text-neutral-700 dark:text-neutral-300"
                   }`}
                 />
               </button>
@@ -374,25 +422,26 @@ const Product = () => {
 
             {/* Thumbnails Gallery (Only shown if multiple actual images/colors exist) */}
             {displayImages.length > 1 && (
-              <div className="flex items-center gap-3 sm:gap-4 mt-4 pt-1 overflow-x-auto">
+              <div className="flex items-center gap-3 sm:gap-4 mt-4 pt-1 overflow-x-auto pb-1">
                 {displayImages.map((img, index) => {
                   const isActive = selectedImage === index;
+                  const thumbIsPng = Boolean(img && img.toLowerCase().endsWith(".png"));
                   return (
                     <button
                       key={index}
                       type="button"
                       onClick={() => handleThumbnailClick(index)}
-                      className={`group relative rounded-2xl overflow-hidden p-2 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer aspect-square w-20 h-20 sm:w-24 sm:h-24 ${
+                      className={`group relative rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 flex-shrink-0 cursor-pointer aspect-[4/5] w-16 sm:w-20 ${
                         isActive
-                          ? "bg-[#f4f2ee] dark:bg-[#151518] border-2 border-neutral-950 dark:border-[#c2a677] ring-2 ring-neutral-950/20 dark:ring-[#c2a677]/40 shadow-lg scale-105"
-                          : "bg-[#f4f2ee]/60 dark:bg-[#151518]/60 border border-neutral-200 dark:border-white/10 opacity-70 hover:opacity-100 hover:border-neutral-400"
-                      }`}
+                          ? "ring-2 ring-neutral-950 dark:ring-[#c2a677] ring-offset-2 dark:ring-offset-neutral-950 shadow-md scale-105"
+                          : "border border-neutral-200 dark:border-white/10 opacity-70 hover:opacity-100 hover:border-neutral-400"
+                      } bg-neutral-100 dark:bg-neutral-900`}
                       aria-label={`View photo ${index + 1}`}
                     >
                       <img
                         src={img}
-                        alt={`${product.name} photo ${index + 1}`}
-                        className="w-full h-full object-contain transition-transform group-hover:scale-105"
+                        alt={`${product.name} thumbnail ${index + 1}`}
+                        className={`w-full h-full ${thumbIsPng ? "object-contain p-1.5" : "object-cover"} transition-transform duration-500 group-hover:scale-110`}
                       />
                     </button>
                   );
