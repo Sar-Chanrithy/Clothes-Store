@@ -43,7 +43,7 @@ const Shop = ({ defaultFilter }) => {
     color: [],
     rating: []
   });
-  const [maxPrice, setMaxPrice] = useState(10);
+  const [maxPrice, setMaxPrice] = useState(60);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -90,10 +90,10 @@ const Shop = ({ defaultFilter }) => {
   const sizes = ["XS", "S", "M", "L", "XL", "XXL", "6", "7", "8", "9", "10", "11", "12", "One Size"];
   const colors = ["Black", "White", "Navy", "Charcoal", "Camel", "Brown", "Gray", "Red", "Blue", "Pink", "Burgundy", "Olive", "Beige", "Tan", "Gold", "Silver"];
   const priceRanges = [
-    { label: "$2.50 - $4.00", min: 2.5, max: 4.0 },
-    { label: "$4.00 - $6.00", min: 4.0, max: 6.0 },
-    { label: "$6.00 - $8.00", min: 6.0, max: 8.0 },
-    { label: "$8.00 - $10.00", min: 8.0, max: 10.0 }
+    { label: "Under $5", min: 0, max: 5 },
+    { label: "$5 - $10", min: 5, max: 10 },
+    { label: "$10 - $30", min: 10, max: 30 },
+    { label: "$30 - $60+", min: 30, max: Infinity }
   ];
 
   const sortOptions = [
@@ -132,7 +132,7 @@ const Shop = ({ defaultFilter }) => {
     const matchesRating = selectedFilters.rating.length === 0 || 
                          selectedFilters.rating.some(r => (product.rating || 0) >= r);
 
-    const matchesPrice = (maxPrice >= 10 || product.price <= maxPrice) &&
+    const matchesPrice = (maxPrice >= 60 || product.price <= maxPrice) &&
                         (selectedFilters.priceRange.length === 0 ||
                         selectedFilters.priceRange.some(label => {
                           const found = priceRanges.find(p => p.label === label);
@@ -330,7 +330,7 @@ const Shop = ({ defaultFilter }) => {
                       color: [],
                       rating: []
                     });
-                    setMaxPrice(10);
+                    setMaxPrice(60);
                   }}
                   className="text-sm text-purple-600 dark:text-purple-400 hover:underline"
                 >
@@ -387,7 +387,7 @@ const Shop = ({ defaultFilter }) => {
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Price Range</h4>
                   <span className="text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-2 py-0.5 rounded-full">
-                    {maxPrice >= 10 ? "$2.50 — $10.00" : `$2.50 — $${maxPrice.toFixed(2)}`}
+                    {maxPrice >= 60 ? "$0 — $60+" : `$0 — $${maxPrice.toFixed(2)}`}
                   </span>
                 </div>
 
@@ -396,8 +396,8 @@ const Shop = ({ defaultFilter }) => {
                   <input
                     type="range"
                     min="2.5"
-                    max="10"
-                    step="0.5"
+                    max="60"
+                    step="2.5"
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(Number(e.target.value))}
                     className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-600 focus:outline-none"
@@ -405,8 +405,8 @@ const Shop = ({ defaultFilter }) => {
                   />
                   <div className="flex justify-between text-[11px] font-medium text-gray-400">
                     <span>$2.50</span>
-                    <span>$6.00</span>
-                    <span>$10.00</span>
+                    <span>$30</span>
+                    <span>$60+</span>
                   </div>
                 </div>
 
@@ -600,7 +600,7 @@ const Shop = ({ defaultFilter }) => {
                       color: [],
                       rating: []
                     });
-                    setMaxPrice(10);
+                    setMaxPrice(60);
                     setSearchQuery("");
                   }}
                   className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/25 hover:scale-105 transition-all"
@@ -792,7 +792,7 @@ const Shop = ({ defaultFilter }) => {
                       color: [],
                       rating: []
                     });
-                    setMaxPrice(10);
+                    setMaxPrice(60);
                   }}
                   className="text-xs text-purple-600 dark:text-purple-400 font-medium hover:underline"
                 >
@@ -856,7 +856,7 @@ const Shop = ({ defaultFilter }) => {
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Price Range</h4>
                   <span className="text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-2 py-0.5 rounded-full">
-                    {maxPrice >= 10 ? "$2.50 — $10.00" : `$2.50 — $${maxPrice.toFixed(2)}`}
+                    {maxPrice >= 60 ? "$0 — $60+" : `$0 — $${maxPrice.toFixed(2)}`}
                   </span>
                 </div>
 
@@ -865,8 +865,8 @@ const Shop = ({ defaultFilter }) => {
                   <input
                     type="range"
                     min="2.5"
-                    max="10"
-                    step="0.5"
+                    max="60"
+                    step="2.5"
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(Number(e.target.value))}
                     className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-600 focus:outline-none"
@@ -874,8 +874,8 @@ const Shop = ({ defaultFilter }) => {
                   />
                   <div className="flex justify-between text-[11px] font-medium text-gray-400">
                     <span>$2.50</span>
-                    <span>$6.00</span>
-                    <span>$10.00</span>
+                    <span>$30</span>
+                    <span>$60+</span>
                   </div>
                 </div>
 

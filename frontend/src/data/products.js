@@ -2082,6 +2082,159 @@ export const products = [
       "Structured fitted waistband with hidden side zipper",
       "Classic preppy aesthetic for casual outings and sporty chic looks"
     ]
+  },
+  {
+    "id": 105,
+    "name": "Daily Mood Sarcastic Graphic Tee - Burgundy",
+    "brand": "VELORA Edition",
+    "price": 50.0,
+    "originalPrice": 65.0,
+    "rating": 4.9,
+    "reviews": 168,
+    "image": "/images/products/tee-sarcastic-burgundy.png",
+    "images": [
+      "/images/products/tee-sarcastic-burgundy.png",
+      "/images/products/tee-sarcastic-blue.png"
+    ],
+    "colorImages": {
+      "Burgundy": "/images/products/tee-sarcastic-burgundy.png",
+      "Blue": "/images/products/tee-sarcastic-blue.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Premium Drop",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Burgundy",
+      "Blue"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0105",
+    "description": "Limited edition heavyweight combed cotton statement tee in rich burgundy. Emblazoned with crisp typography: 'I CAN ONLY PLEASE ONE PERSON A DAY. TODAY ISN'T YOUR DAY. TOMORROW DOESN'T LOOK GOOD EITHER.'",
+    "details": [
+      "Heavyweight 240 GSM premium combed cotton jersey",
+      "High-density screenprint lettering with crisp contrast",
+      "Pre-shrunk and silicone washed for luxurious drape",
+      "Available in Burgundy and Cobalt Blue"
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Daily Mood Sarcastic Graphic Tee - Cobalt Blue",
+    "brand": "VELORA Edition",
+    "price": 50.0,
+    "originalPrice": 65.0,
+    "rating": 4.9,
+    "reviews": 152,
+    "image": "/images/products/tee-sarcastic-blue.png",
+    "images": [
+      "/images/products/tee-sarcastic-blue.png",
+      "/images/products/tee-sarcastic-burgundy.png"
+    ],
+    "colorImages": {
+      "Blue": "/images/products/tee-sarcastic-blue.png",
+      "Burgundy": "/images/products/tee-sarcastic-burgundy.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Trending",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Blue",
+      "Burgundy"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 20,
+    "sku": "VEL-0106",
+    "description": "Limited edition heavyweight combed cotton statement tee in vivid cobalt blue. Emblazoned with crisp typography: 'I CAN ONLY PLEASE ONE PERSON A DAY. TODAY ISN'T YOUR DAY. TOMORROW DOESN'T LOOK GOOD EITHER.'",
+    "details": [
+      "Heavyweight 240 GSM premium combed cotton jersey",
+      "High-density screenprint lettering with crisp contrast",
+      "Pre-shrunk and silicone washed for luxurious drape",
+      "Available in Cobalt Blue and Burgundy"
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Nobero Heather Grey Heavyweight Crewneck Tee",
+    "brand": "VELORA Studio",
+    "price": 50.0,
+    "originalPrice": 65.0,
+    "rating": 4.9,
+    "reviews": 134,
+    "image": "/images/products/tee-grey-melange-crewneck.jpg",
+    "images": [
+      "/images/products/tee-grey-melange-crewneck.jpg"
+    ],
+    "colorImages": {
+      "Gray": "/images/products/tee-grey-melange-crewneck.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Exclusive",
+    "isNew": true,
+    "isSale": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Gray"
+    ],
+    "inStock": true,
+    "stock": 25,
+    "maxQuantity": 25,
+    "sku": "VEL-0107",
+    "description": "Ultra-premium heather grey melange crewneck t-shirt by Nobero. Cut from heavyweight luxury combed cotton with reinforced rib collar and tailored drop-shoulder fit.",
+    "details": [
+      "100% luxury combed ringspun cotton in fine heather grey melange",
+      "Tailored drop shoulder with reinforced flatlock seam construction",
+      "Pre-shrunk and enzyme-washed for cloud-soft hand-feel",
+      "Heavyweight collar ribbing designed to never sag"
+    ]
   }
 ];
 
