@@ -2233,6 +2233,57 @@ export const products = [
       "Pre-shrunk and enzyme-washed for cloud-soft hand-feel",
       "Heavyweight collar ribbing designed to never sag"
     ]
+  },
+  {
+    "id": 108,
+    "name": "The K2 Tee",
+    "brand": "VELORA Edition",
+    "drop": "DROP 003 — FUNDS PROJECT PAKISTAN",
+    "collection": "The Water & Life Drop",
+    "price": 41.99,
+    "originalPrice": 50.0,
+    "rating": 5.0,
+    "reviews": 118,
+    "image": "/images/products/the-k2-tee-front.png",
+    "images": [
+      "/images/products/the-k2-tee-front.png",
+      "/images/products/the-k2-tee-back.png"
+    ],
+    "colorImages": {
+      "White": "/images/products/the-k2-tee-front.png"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Special Drop",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "stock": 25,
+    "maxQuantity": 10,
+    "sku": "DROP-K2-003",
+    "description": "K2 is the world's second highest summit and Pakistan's greatest. It has always stood for something bigger than the climb itself. This tee wraps the mountain's silhouette in the patterns of traditional Pakistani folk art, pulling from generations of craft, color, and heritage. Every purchase funds humanitarian relief for communities across Pakistan.",
+    "details": [
+      "Boxy oversized streetwear silhouette with relaxed drop shoulders",
+      "Heavyweight 260 GSM 100% organic combed ringspun cotton",
+      "Screenprinted traditional Pakistani folk art mountain graphic on back",
+      "Minimalist SOULTIES green chest embroidery on front",
+      "Durable rib-knit crew collar with reinforced double-stitched seams"
+    ]
   }
 ];
 

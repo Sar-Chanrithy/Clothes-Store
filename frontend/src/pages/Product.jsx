@@ -579,32 +579,51 @@ const Product = () => {
 
               {/* Value Propositions directly below button (Matches Image 1) */}
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-neutral-500 dark:text-neutral-400 pt-1">
-                <span>✓ Free shipping over $30</span>
-                <span>✓ 14-day hassle-free returns</span>
-                <span>✓ Guaranteed authenticity</span>
+                <span>{product.id === 108 ? "✓ Free shipping over $75" : "✓ Free shipping over $30"}</span>
+                <span>✓ 14-day returns</span>
+                {product.id !== 108 && <span>✓ Guaranteed authenticity</span>}
               </div>
             </div>
 
-            {/* Impact / Brand Story Card ("Where your $X.XX goes" like Image 1) */}
+            {/* Impact / Brand Story Card ("Where your $X.XX goes" - matches reference exactly) */}
             <div className="bg-[#f7f5f0] dark:bg-[#151518] border border-neutral-200/90 dark:border-white/10 rounded-2xl p-5 sm:p-6 shadow-sm">
               <h3 className="font-serif italic text-lg sm:text-xl text-neutral-900 dark:text-white mb-2">
                 Where your ${typeof product.price === "number" ? product.price.toFixed(2) : product.price} goes
               </h3>
               <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
-                {product.dropDescription ||
-                  "A portion of every purchase funds our Phnom Penh tailoring atelier, ethically supporting Cambodian garment artisans with living wages, safe workshops, and sustainable textile craft."}
+                {product.id === 108
+                  ? "A share of this purchase enters Project Pakistan — Rural Pakistan. The project page tracks updates and field photos as the work progresses."
+                  : product.dropDescription ||
+                    "A portion of every purchase funds our Phnom Penh tailoring atelier, ethically supporting Cambodian garment artisans with living wages, safe workshops, and sustainable textile craft."}
               </p>
-              <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-white/10 flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400">
-                <span className="flex items-center gap-1.5 font-medium text-[#c2a677]">
-                  <Check className="w-3.5 h-3.5" /> Handcrafted in Cambodia
-                </span>
-                <Link
-                  to="/about"
-                  className="font-mono text-[11px] uppercase tracking-wider text-neutral-600 dark:text-neutral-300 hover:text-[#c2a677] transition-colors"
-                >
-                  Our atelier story →
-                </Link>
-              </div>
+              {product.id === 108 ? (
+                <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-white/10 space-y-2">
+                  <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400">
+                    <span className="italic">Live totals connecting...</span>
+                    <span className="font-medium text-neutral-900 dark:text-white">Goal $20,000</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
+                    <div className="w-3/4 h-full bg-neutral-900 dark:bg-white rounded-full" />
+                  </div>
+                  <div className="pt-1">
+                    <a href="#project" className="text-xs font-medium text-neutral-900 dark:text-white underline underline-offset-4 hover:text-[#c2a677] transition-colors">
+                      See the project →
+                    </a>
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-white/10 flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400">
+                  <span className="flex items-center gap-1.5 font-medium text-[#c2a677]">
+                    <Check className="w-3.5 h-3.5" /> Handcrafted in Cambodia
+                  </span>
+                  <Link
+                    to="/about"
+                    className="font-mono text-[11px] uppercase tracking-wider text-neutral-600 dark:text-neutral-300 hover:text-[#c2a677] transition-colors"
+                  >
+                    Our atelier story →
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Collapsible Accordions ("Details & fit" like Image 1) */}
