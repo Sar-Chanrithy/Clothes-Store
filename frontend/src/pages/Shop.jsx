@@ -659,8 +659,13 @@ const Shop = ({ defaultFilter }) => {
 
                     {/* Wishlist Button */}
                     <button
-                      onClick={() => toggleWishlist(product.id)}
-                      className="absolute top-2 sm:top-3 right-2 sm:top-3 p-1.5 sm:p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-300 hover:scale-110 z-10 shadow-xs"
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleWishlist(product.id);
+                      }}
+                      className="absolute top-2 sm:top-3 right-2 sm:top-3 p-1.5 sm:p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-300 hover:scale-110 z-20 shadow-xs cursor-pointer"
                       title="Toggle Wishlist"
                     >
                       <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${
@@ -670,20 +675,27 @@ const Shop = ({ defaultFilter }) => {
                       }`} />
                     </button>
 
-                    {/* Quick Actions */}
-                    <div className={`absolute inset-0 bg-black/40 flex items-center justify-center gap-2 sm:gap-3 transition-opacity duration-300 ${
-                      hoveredProduct === product.id ? "opacity-100" : "opacity-0 pointer-events-none"
-                    }`}>
-                      <Link to={`/product/${product.id}`} className="p-2 sm:p-3 bg-white text-gray-800 rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300 hover:scale-110 flex items-center justify-center" title="View details">
+                    {/* Quick Actions Hover Overlay - Entire image is clickable to product detail */}
+                    <Link
+                      to={`/product/${product.id}`}
+                      className={`absolute inset-0 bg-black/40 flex items-center justify-center gap-2 sm:gap-3 transition-opacity duration-300 cursor-pointer ${
+                        hoveredProduct === product.id ? "opacity-100" : "opacity-0 pointer-events-none"
+                      }`}
+                      title="View product details"
+                    >
+                      <div className="p-2 sm:p-3 bg-white text-gray-800 rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-md pointer-events-none">
                         <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </Link>
+                      </div>
                       <button 
-                        onClick={() => {
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
                           addItem(product, 1);
                           setAddedId(product.id);
                           setTimeout(() => setAddedId(null), 2000);
                         }} 
-                        className="p-2 sm:p-3 bg-white text-gray-800 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110 flex items-center justify-center cursor-pointer" 
+                        className="p-2 sm:p-3 bg-white text-gray-800 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110 flex items-center justify-center cursor-pointer shadow-md z-10" 
                         title="Add to cart"
                       >
                         {addedId === product.id ? (
@@ -692,7 +704,7 @@ const Shop = ({ defaultFilter }) => {
                           <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
                         )}
                       </button>
-                    </div>
+                    </Link>
                   </div>
 
                   <div className={`p-3 sm:p-4 ${viewMode === "list" ? "flex-1" : ""}`}>

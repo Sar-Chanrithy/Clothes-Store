@@ -90,28 +90,29 @@ const ProductCard = ({ product, onWishlistToggle, onAddToCart }) => {
           />
         </button>
 
-        {/* Quick Actions Hover Overlay */}
-        <div
-          className={`absolute inset-0 bg-black/40 flex items-center justify-center gap-3 transition-opacity duration-300 ${
+        {/* Quick Actions Hover Overlay - Entire image is clickable to product detail */}
+        <Link
+          to={`/product/${product.id}`}
+          className={`absolute inset-0 bg-black/40 flex items-center justify-center gap-3 transition-opacity duration-300 cursor-pointer ${
             isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
+          title="View product details"
         >
-          <Link
-            to={`/product/${product.id}`}
-            className="p-3 bg-white text-gray-800 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 hover:scale-110 shadow-lg flex items-center justify-center"
+          <div
+            className="p-3 bg-white text-gray-800 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 hover:scale-110 shadow-lg flex items-center justify-center pointer-events-none"
             title="Quick View"
           >
             <Eye className="w-5 h-5" />
-          </Link>
-          <Link
-            to="/cart"
+          </div>
+          <button
+            type="button"
             onClick={handleCartClick}
-            className="p-3 bg-white text-gray-800 rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300 hover:scale-110 shadow-lg flex items-center justify-center"
+            className="p-3 bg-white text-gray-800 rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300 hover:scale-110 shadow-lg flex items-center justify-center cursor-pointer z-10"
             title="Add to Cart"
           >
             <ShoppingBag className="w-5 h-5" />
-          </Link>
-        </div>
+          </button>
+        </Link>
       </div>
 
       {/* Content */}

@@ -272,25 +272,38 @@ const Home = () => {
                       </span>
                     )}
                     
-                    {/* Floating Action Buttons */}
-                    <div className={`absolute inset-0 bg-neutral-950/60 backdrop-blur-xs flex items-center justify-center gap-1.5 sm:gap-3 transition-opacity duration-300 ${hoveredProduct === product.id ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                      <Link
-                        to={`/product/${product.id}`}
-                        className="p-2 sm:p-3 bg-neutral-900 text-white rounded-full hover:bg-[#c2a677] hover:text-neutral-950 transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-lg border border-white/10"
+                    {/* Floating Action Buttons - Entire overlay navigates to product details */}
+                    <Link
+                      to={`/product/${product.id}`}
+                      className={`absolute inset-0 bg-neutral-950/60 backdrop-blur-xs flex items-center justify-center gap-1.5 sm:gap-3 transition-opacity duration-300 cursor-pointer ${hoveredProduct === product.id ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                      title="View Details"
+                    >
+                      <div
+                        className="p-2 sm:p-3 bg-neutral-900 text-white rounded-full hover:bg-[#c2a677] hover:text-neutral-950 transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-lg border border-white/10 pointer-events-none"
                         title="View Details"
                       >
                         <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </Link>
+                      </div>
                       <button
-                        onClick={(e) => handleWishlistToggle(e, product.id)}
-                        className={`p-2 sm:p-3 bg-neutral-900 rounded-full transition-all duration-300 hover:scale-110 shadow-lg border border-white/10 cursor-pointer ${isInWishlist(product.id) ? "text-[#c2a677]" : "text-white hover:text-[#c2a677]"}`}
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleWishlistToggle(e, product.id);
+                        }}
+                        className={`p-2 sm:p-3 bg-neutral-900 rounded-full transition-all duration-300 hover:scale-110 shadow-lg border border-white/10 cursor-pointer z-10 ${isInWishlist(product.id) ? "text-[#c2a677]" : "text-white hover:text-[#c2a677]"}`}
                         title="Add to Wishlist"
                       >
                         <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${isInWishlist(product.id) ? "fill-[#c2a677] text-[#c2a677]" : ""}`} />
                       </button>
                       <button
-                        onClick={(e) => handleQuickAdd(e, product)}
-                        className="p-2 sm:p-3 bg-neutral-900 text-white rounded-full hover:bg-[#c2a677] hover:text-neutral-950 transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-lg border border-white/10 cursor-pointer"
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleQuickAdd(e, product);
+                        }}
+                        className="p-2 sm:p-3 bg-neutral-900 text-white rounded-full hover:bg-[#c2a677] hover:text-neutral-950 transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-lg border border-white/10 cursor-pointer z-10"
                         title="Add to Cart"
                       >
                         {addedId === product.id ? (
@@ -299,7 +312,7 @@ const Home = () => {
                           <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
                         )}
                       </button>
-                    </div>
+                    </Link>
                   </div>
 
                   <div className={`p-3 sm:p-4.5 bg-stone-50/90 dark:bg-neutral-950/90 border-t border-neutral-100 dark:border-white/5 ${viewMode === "list" ? "flex-1 flex flex-col justify-between" : ""}`}>
