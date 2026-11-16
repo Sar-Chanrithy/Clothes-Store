@@ -21,9 +21,7 @@ import {
   ChevronUp,
   Check,
   Sparkles,
-  X,
-  Camera,
-  RotateCcw
+  X
 } from "lucide-react";
 
 /**
@@ -169,9 +167,9 @@ const Product = () => {
     return product.image;
   };
 
-  // Build image list dynamically and assign accurate semantic labels
-  const { displayImages, viewLabels } = useMemo(() => {
-    if (!product) return { displayImages: [], viewLabels: [] };
+  // Build image list dynamically based on product images and selected color
+  const displayImages = useMemo(() => {
+    if (!product) return [];
 
     const activeColorImg = getColorImage(selectedColor);
     let baseImages = (product.images && product.images.length > 0)
@@ -183,39 +181,7 @@ const Product = () => {
       baseImages = [activeColorImg, ...baseImages.filter((img) => img !== activeColorImg)];
     }
 
-    const labels = baseImages.map((imgSrc, i) => {
-      // 1. Explicit viewLabels on product
-      if (product.viewLabels && product.viewLabels[i]) {
-        return product.viewLabels[i];
-      }
-
-      // 2. Filename explicitly indicates a back view
-      const lower = (imgSrc || "").toLowerCase();
-      if (lower.includes("-back.") || lower.includes("_back.") || lower.endsWith("-back") || lower.includes("back-view")) {
-        return "Back View";
-      }
-
-      // 3. Match image path against product.colorImages
-      if (product.colorImages) {
-        const colorEntry = Object.entries(product.colorImages).find(
-          ([, path]) => path === imgSrc
-        );
-        if (colorEntry) {
-          return `${colorEntry[0]} • Front`;
-        }
-      }
-
-      // 4. Match against product.colors 1-to-1 if count matches
-      if (product.colors && product.colors.length === baseImages.length && product.colors[i]) {
-        const cName = typeof product.colors[i] === "string" ? product.colors[i] : product.colors[i].name;
-        return `${cName} • Front`;
-      }
-
-      // 5. Default
-      return i === 0 ? "Front View" : `View ${i + 1}`;
-    });
-
-    return { displayImages: baseImages, viewLabels: labels };
+    return baseImages;
   }, [product, selectedColor]);
 
   const handleColorChange = (colorName) => {
@@ -303,7 +269,6 @@ const Product = () => {
 
   const isFavorited = isInWishlist(product.id);
   const activeImageSrc = displayImages[selectedImage] || product.image;
-  const activeViewLabel = viewLabels[selectedImage] || (selectedImage === 0 ? "Front View" : "Back View");
 
   return (
     <div className="bg-[#fcfbf9] dark:bg-[#0c0c0e] text-neutral-900 dark:text-neutral-100 min-h-screen transition-colors duration-300">
@@ -369,7 +334,7 @@ const Product = () => {
               <img
                 key={activeImageSrc}
                 src={activeImageSrc}
-                alt={`${product.name} - ${activeViewLabel}`}
+                alt={product.name}
                 className="w-full h-full max-h-[460px] object-contain transition-transform duration-700 ease-out hover:scale-105 select-none"
                 onError={(e) => {
                   e.target.src = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80";
@@ -405,43 +370,35 @@ const Product = () => {
                   }`}
                 />
               </button>
+            </div>
 
-              {/* Bottom Center Active View Pill Badge */}
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/70 dark:bg-black/80 backdrop-blur-md text-white text-[11px] font-mono tracking-widest uppercase flex items-center gap-2 border border-white/15 shadow-lg pointer-events-none">
-                <Camera className="w-3.5 h-3.5 text-[#c2a677]" />
-                <span>{activeViewLabel}</span>
+            {/* Thumbnails Gallery (Only shown if multiple actual images/colors exist) */}
+            {displayImages.length > 1 && (
+              <div className="flex items-center gap-3 sm:gap-4 mt-4 pt-1 overflow-x-auto">
+                {displayImages.map((img, index) => {
+                  const isActive = selectedImage === index;
+                  return (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => handleThumbnailClick(index)}
+                      className={`group relative rounded-2xl overflow-hidden p-2 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer aspect-square w-20 h-20 sm:w-24 sm:h-24 ${
+                        isActive
+                          ? "bg-[#f4f2ee] dark:bg-[#151518] border-2 border-neutral-950 dark:border-[#c2a677] ring-2 ring-neutral-950/20 dark:ring-[#c2a677]/40 shadow-lg scale-105"
+                          : "bg-[#f4f2ee]/60 dark:bg-[#151518]/60 border border-neutral-200 dark:border-white/10 opacity-70 hover:opacity-100 hover:border-neutral-400"
+                      }`}
+                      aria-label={`View photo ${index + 1}`}
+                    >
+                      <img
+                        src={img}
+                        alt={`${product.name} photo ${index + 1}`}
+                        className="w-full h-full object-contain transition-transform group-hover:scale-105"
+                      />
+                    </button>
+                  );
+                })}
               </div>
-            </div>
-
-            {/* Front & Back Thumbnails Gallery (Directly below Arch, matching Image 1) */}
-            <div className="flex items-center gap-3 sm:gap-4 mt-4 pt-1 overflow-x-auto">
-              {displayImages.map((img, index) => {
-                const label = viewLabels[index] || (index === 0 ? "Front View" : "Back View");
-                const isActive = selectedImage === index;
-                return (
-                  <button
-                    key={index}
-                    type="button"
-                    onClick={() => handleThumbnailClick(index)}
-                    className={`group relative rounded-2xl overflow-hidden p-2 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer aspect-square w-20 h-20 sm:w-24 sm:h-24 ${
-                      isActive
-                        ? "bg-[#f4f2ee] dark:bg-[#151518] border-2 border-neutral-950 dark:border-[#c2a677] ring-2 ring-neutral-950/20 dark:ring-[#c2a677]/40 shadow-lg scale-105"
-                        : "bg-[#f4f2ee]/60 dark:bg-[#151518]/60 border border-neutral-200 dark:border-white/10 opacity-70 hover:opacity-100 hover:border-neutral-400"
-                    }`}
-                    aria-label={`View ${label}`}
-                  >
-                    <img
-                      src={img}
-                      alt={`${product.name} ${label}`}
-                      className="w-full h-full object-contain transition-transform group-hover:scale-105"
-                    />
-                    <span className="absolute bottom-1 inset-x-1 text-[9px] font-mono tracking-wider uppercase text-center truncate px-1 py-0.5 rounded bg-black/60 text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                      {label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            )}
 
           </div>
 
