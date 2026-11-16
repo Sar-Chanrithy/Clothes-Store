@@ -207,7 +207,7 @@ const PromoBanners = () => {
                   {/* Social Media Icons */}
                   <div className="flex items-center gap-2">
                     <a
-                      href="https://facebook.com"
+                      href="https://www.facebook.com/ToroEmmSremm007"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-8 h-8 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-[#c2a677] hover:text-neutral-950 transition-all"

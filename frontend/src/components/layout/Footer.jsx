@@ -99,10 +99,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", color: "hover:text-pink-500" },
-    { icon: Twitter, label: "Twitter", color: "hover:text-blue-400" },
-    { icon: Facebook, label: "Facebook", color: "hover:text-blue-600" },
-    { icon: Youtube, label: "Youtube", color: "hover:text-red-500" }
+    { icon: Instagram, label: "Instagram", color: "hover:text-pink-500", href: "https://instagram.com" },
+    { icon: Twitter, label: "Twitter", color: "hover:text-blue-400", href: "https://twitter.com" },
+    { icon: Facebook, label: "Facebook", color: "hover:text-blue-600", href: "https://www.facebook.com/ToroEmmSremm007" },
+    { icon: Youtube, label: "Youtube", color: "hover:text-red-500", href: "https://www.youtube.com/@sarchanrithy815" }
   ];
 
   const paymentMethods = [
@@ -143,7 +143,9 @@ const Footer = () => {
                 return (
                   <a
                     key={index}
-                    href="#"
+                    href={social.href || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`p-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg`}
                     aria-label={social.label}
                   >
