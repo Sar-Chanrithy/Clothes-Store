@@ -13,6 +13,7 @@ export const products = [
     "image": "/images/products/shirt-sky-blue.jpg",
     "images": [
       "/images/products/shirt-sky-blue.jpg",
+      "/images/products/shirt-sky-blue-back.jpg",
       "/images/products/shirt-white-oxford.jpg",
       "/images/products/shirt-navy-blue.jpg",
       "/images/products/shirt-slate-grey.jpg"
@@ -266,7 +267,8 @@ export const products = [
     "reviews": 92,
     "image": "/images/products/tee-raglan-burgundy.png",
     "images": [
-      "/images/products/tee-raglan-burgundy.png"
+      "/images/products/tee-raglan-burgundy.png",
+      "/images/products/tee-raglan-burgundy-back.jpg"
     ],
     "colorImages": {
       "Burgundy": "/images/products/tee-raglan-burgundy.png"
