@@ -266,7 +266,12 @@ export const products = [
     "reviews": 92,
     "image": "/images/products/tee-raglan-burgundy.png",
     "images": [
-      "/images/products/tee-raglan-burgundy.png"
+      "/images/products/tee-raglan-burgundy.png",
+      "/images/products/tee-raglan-burgundy-back.png"
+    ],
+    "viewLabels": [
+      "Front View",
+      "Back View"
     ],
     "colorImages": {
       "Burgundy": "/images/products/tee-raglan-burgundy.png"
@@ -2094,7 +2099,11 @@ export const products = [
     "image": "/images/products/tee-sarcastic-burgundy.png",
     "images": [
       "/images/products/tee-sarcastic-burgundy.png",
-      "/images/products/tee-sarcastic-blue.png"
+      "/images/products/tee-sarcastic-burgundy-back.png"
+    ],
+    "viewLabels": [
+      "Front View",
+      "Back View"
     ],
     "colorImages": {
       "Burgundy": "/images/products/tee-sarcastic-burgundy.png",
@@ -2146,7 +2155,11 @@ export const products = [
     "image": "/images/products/tee-sarcastic-blue.png",
     "images": [
       "/images/products/tee-sarcastic-blue.png",
-      "/images/products/tee-sarcastic-burgundy.png"
+      "/images/products/tee-sarcastic-blue-back.png"
+    ],
+    "viewLabels": [
+      "Front View",
+      "Back View"
     ],
     "colorImages": {
       "Blue": "/images/products/tee-sarcastic-blue.png",
@@ -2197,7 +2210,12 @@ export const products = [
     "reviews": 134,
     "image": "/images/products/tee-grey-melange-crewneck.jpg",
     "images": [
-      "/images/products/tee-grey-melange-crewneck.jpg"
+      "/images/products/tee-grey-melange-crewneck.jpg",
+      "/images/products/tee-grey-melange-back.jpg"
+    ],
+    "viewLabels": [
+      "Front View",
+      "Back View"
     ],
     "colorImages": {
       "Gray": "/images/products/tee-grey-melange-crewneck.jpg"
@@ -2234,6 +2252,62 @@ export const products = [
       "Tailored drop shoulder with reinforced flatlock seam construction",
       "Pre-shrunk and enzyme-washed for cloud-soft hand-feel",
       "Heavyweight collar ribbing designed to never sag"
+    ]
+  },
+  {
+    "id": 108,
+    "name": "The K2 Tee",
+    "brand": "VELORA Studio",
+    "drop": "DROP 003 — FUNDS PROJECT PAKISTAN",
+    "price": 41.99,
+    "originalPrice": 48.0,
+    "rating": 5.0,
+    "reviews": 118,
+    "image": "/images/products/tee-k2-back.jpg",
+    "images": [
+      "/images/products/tee-k2-front.jpg",
+      "/images/products/tee-k2-back.jpg"
+    ],
+    "viewLabels": [
+      "Front View",
+      "Back View"
+    ],
+    "colorImages": {
+      "White": "/images/products/tee-k2-back.jpg"
+    },
+    "category": "Men's Fashion",
+    "subCategory": "Tops",
+    "badge": "Special Drop",
+    "isNew": true,
+    "isSale": false,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "inStock": true,
+    "stock": 20,
+    "maxQuantity": 10,
+    "sku": "DROP-K2-003",
+    "description": "K2 is the world's second highest summit and Pakistan's greatest. It has always stood for something bigger than the climb itself. This tee wraps the mountain's silhouette in the patterns of traditional Pakistani folk art, pulling from generations of craft, color, and heritage. Every purchase funds humanitarian relief for communities across Pakistan.",
+    "details": [
+      "Boxy oversized streetwear fit with relaxed drop shoulders",
+      "Heavyweight 260 GSM organic combed ringspun cotton",
+      "Traditional Pakistani folk art mountain graphic screenprinted on back",
+      "Minimalist chest embroidery signature on front",
+      "Preshrunk double-needle stitched cuffs and hem"
     ]
   }
 ];
