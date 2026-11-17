@@ -83,6 +83,16 @@ const Shop = ({ defaultFilter }) => {
     setSearchParams(newParams);
   };
 
+  const [productList, setProductList] = useState([...allProducts]);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setProductList([...allProducts]);
+    };
+    window.addEventListener("products-updated", handleUpdate);
+    return () => window.removeEventListener("products-updated", handleUpdate);
+  }, []);
+
   const productsPerPage = 12;
 
   // Filter options
@@ -105,7 +115,7 @@ const Shop = ({ defaultFilter }) => {
   ];
 
   // Filter and sort products
-  const filteredProducts = allProducts.filter(product => {
+  const filteredProducts = productList.filter(product => {
     // Special filters (New Arrivals / Sale)
     if (activeSpecialFilter === "new" && !product.isNew) return false;
     if (activeSpecialFilter === "sale" && !product.isSale) return false;

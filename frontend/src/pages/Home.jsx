@@ -30,6 +30,16 @@ const Home = () => {
   const categoryList = Object.keys(categories);
   const subCategories = selectedCategory !== "All" ? categories[selectedCategory] : [];
 
+  const [productList, setProductList] = useState([...products]);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setProductList([...products]);
+    };
+    window.addEventListener("products-updated", handleUpdate);
+    return () => window.removeEventListener("products-updated", handleUpdate);
+  }, []);
+
   const getCategoryLabel = (category) => {
     switch (category) {
       case "All": return t("cat_all", "All");
@@ -46,7 +56,7 @@ const Home = () => {
   };
 
   // Filter products by category, subcategory AND search query
-  const filteredProducts = products.filter((p) => {
+  const filteredProducts = productList.filter((p) => {
     let matchesCategory = true;
     if (selectedCategory === "✨ New Arrivals") {
       matchesCategory = p.isNew;

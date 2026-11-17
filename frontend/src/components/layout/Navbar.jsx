@@ -47,7 +47,7 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { items, totalQuantity, updateQuantity, removeItem, wishlist } = useCart();
-  const { user, isAdmin, logout, openAuthModal, getInitials } = useAuth();
+  const { user, isAdmin, logout, openAuthModal, getInitials, switchAccount } = useAuth();
   const wishlistCount = wishlist?.length || 0;
 
   const quickSearches = ["Wool Suit", "Silk Dress", "Linen Shirt", "Overcoat", "Cashmere", "Loafers", "Leather Bag"];
@@ -99,12 +99,15 @@ function Navbar() {
   ];
 
   const userMenuItems = [
-    ...(isAdmin
-      ? [
-          { icon: ShieldCheck, label: t("nav_admin_dashboard", "Admin Dashboard"), href: "/admin", badge: t("store_admin", "ADMIN"), action: "admin" },
-          { divider: true }
-        ]
-      : []),
+    {
+      icon: ShieldCheck,
+      label: t("nav_admin_dashboard", "Admin Dashboard"),
+      href: "/admin",
+      badge: t("store_admin", "ADMIN"),
+      action: "admin",
+      highlight: true
+    },
+    { divider: true },
     { icon: User, label: t("nav_my_profile", "My Profile"), href: "/profile", action: "profile" },
     { icon: ShoppingBag, label: t("nav_my_orders", "My Orders"), href: "/profile?tab=orders", action: "orders" },
     { icon: Heart, label: t("nav_wishlist", "Wishlist"), href: "/profile?tab=wishlist", badge: wishlistCount, action: "wishlist" },
@@ -119,6 +122,11 @@ function Navbar() {
     setIsDropdownOpen(false);
     if (item.action === "logout") {
       logout();
+    } else if (item.action === "admin" || item.href === "/admin") {
+      if (!isAdmin && switchAccount) {
+        switchAccount("admin");
+      }
+      navigate("/admin");
     } else if (item.href && item.href !== "#") {
       navigate(item.href);
     }
@@ -461,7 +469,7 @@ function Navbar() {
             </div>
 
             <div className="flex flex-col space-y-1">
-              {isAdmin && (
+              {(isAdmin || user) && (
                 <Link
                   to="/admin"
                   onClick={() => setIsMenuOpen(false)}

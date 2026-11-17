@@ -1,7 +1,7 @@
 // Centralized Products Database (Single Source of Truth)
 import { DRESS_IMAGES } from "./dressImages.js";
 
-export const products = [
+const INITIAL_PRODUCTS = [
   {
     "id": 62,
     "name": "Classic Oxford Long-Sleeve Shirt",
@@ -2420,4 +2420,95 @@ export const sortProducts = (productList, sortBy) => {
   }
 };
 
+const STORAGE_KEY = "velora_products_catalog";
+
+const loadStoredProducts = () => {
+  if (typeof window !== "undefined") {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not load products from localStorage", e);
+    }
+  }
+  return [...INITIAL_PRODUCTS];
+};
+
+export let products = loadStoredProducts();
+
+export const saveProductToCatalog = (productData) => {
+  const targetId = productData.id;
+  let savedItem = null;
+  
+  if (targetId) {
+    const index = products.findIndex(p => String(p.id) === String(targetId));
+    if (index !== -1) {
+      products[index] = { ...products[index], ...productData };
+      savedItem = products[index];
+    } else {
+      savedItem = { ...productData };
+      products.unshift(savedItem);
+    }
+  } else {
+    const maxId = products.reduce((max, p) => {
+      const num = Number(p.id);
+      return !isNaN(num) && num > max ? num : max;
+    }, 108);
+    savedItem = {
+      ...productData,
+      id: maxId + 1,
+      rating: productData.rating || 5.0,
+      reviews: productData.reviews || 0,
+      inStock: productData.inStock !== false,
+      isNew: productData.isNew !== false,
+      images: productData.images && productData.images.length > 0 ? productData.images : [productData.image],
+    };
+    products.unshift(savedItem);
+  }
+
+  if (typeof window !== "undefined") {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+      window.dispatchEvent(new CustomEvent("products-updated", { detail: { products, savedItem } }));
+    } catch (e) {
+      console.error("Failed to save products to localStorage", e);
+    }
+  }
+
+  return savedItem;
+};
+
+export const deleteProductFromCatalog = (productId) => {
+  const index = products.findIndex(p => String(p.id) === String(productId));
+  if (index !== -1) {
+    products.splice(index, 1);
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+        window.dispatchEvent(new CustomEvent("products-updated", { detail: { products, deletedId: productId } }));
+      } catch (e) {
+        console.error("Failed to delete product from localStorage", e);
+      }
+    }
+    return true;
+  }
+  return false;
+};
+
+export const resetProductsCatalog = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem(STORAGE_KEY);
+    products.length = 0;
+    products.push(...INITIAL_PRODUCTS);
+    window.dispatchEvent(new CustomEvent("products-updated", { detail: { products } }));
+  }
+  return products;
+};
+
+export { INITIAL_PRODUCTS };
 export default products;

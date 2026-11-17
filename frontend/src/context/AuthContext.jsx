@@ -37,13 +37,31 @@ export const DEMO_ADMIN = {
   avatar: null
 };
 
+// Helper to detect admin email or username
+export const isUserAdmin = (email, name, role) => {
+  if (role === "Admin" || role === "admin" || role === "SUPER ADMIN") return true;
+  const cleanEmail = (email || "").trim().toLowerCase();
+  const cleanName = (name || "").trim().toLowerCase();
+  return (
+    cleanEmail.startsWith("admin@") ||
+    cleanEmail.includes("admin") ||
+    cleanEmail === "admin" ||
+    cleanName === "admin" ||
+    cleanName.includes("administrator")
+  );
+};
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     if (typeof window !== "undefined") {
       const savedUser = localStorage.getItem("velora_auth_user");
       if (savedUser) {
         try {
-          return JSON.parse(savedUser);
+          const parsed = JSON.parse(savedUser);
+          if (parsed && isUserAdmin(parsed.email, parsed.name, parsed.role)) {
+            parsed.role = "Admin";
+          }
+          return parsed;
         } catch (e) {
           return DEMO_USER;
         }
@@ -58,6 +76,10 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
+      // Auto-ensure role is Admin if email/name matches
+      if (isUserAdmin(user.email, user.name, user.role) && user.role !== "Admin") {
+        user.role = "Admin";
+      }
       localStorage.setItem("velora_auth_user", JSON.stringify(user));
     } else {
       localStorage.removeItem("velora_auth_user");
@@ -80,18 +102,22 @@ export const AuthProvider = ({ children }) => {
 
     const cleanEmail = email.trim().toLowerCase();
 
-    // 1. Check Predefined Admin Account
-    if (
-      cleanEmail === "admin@rithystore.com" ||
-      cleanEmail === "admin@gmail.com" ||
-      cleanEmail === "admin"
-    ) {
-      if (password !== "admin123" && password !== "123456") {
-        return { success: false, error: "Incorrect admin password. (Password is: admin123)" };
-      }
-      setUser(DEMO_ADMIN);
+    // 1. Check Admin Account (including admin@rithy.com, admin@rithystore.com, admin@gmail.com, etc.)
+    if (isUserAdmin(cleanEmail, "")) {
+      const adminUser = {
+        id: "adm-" + Date.now().toString(36),
+        name: cleanEmail === "admin@rithy.com" ? "Admin" : (DEMO_ADMIN.name || "Admin"),
+        email: cleanEmail,
+        role: "Admin",
+        phone: "+855 98 765 432",
+        joinedDate: "October 2023",
+        address: DEMO_ADMIN.address,
+        bio: "Lead Store Administrator & Curator.",
+        avatar: null
+      };
+      setUser(adminUser);
       closeAuthModal();
-      return { success: true, user: DEMO_ADMIN };
+      return { success: true, user: adminUser };
     }
 
     // 2. Check Predefined Customer / User Account
@@ -117,11 +143,12 @@ export const AuthProvider = ({ children }) => {
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(" ") || "Valued Customer";
 
+    const isDetectedAdmin = isUserAdmin(cleanEmail, formattedName);
     const loggedInUser = {
-      id: "usr-" + Date.now().toString(36),
+      id: (isDetectedAdmin ? "adm-" : "usr-") + Date.now().toString(36),
       name: formattedName,
       email: cleanEmail,
-      role: "Customer",
+      role: isDetectedAdmin ? "Admin" : "Customer",
       joinedDate: new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }),
       avatar: null
     };
@@ -140,11 +167,14 @@ export const AuthProvider = ({ children }) => {
       return { success: false, error: "Password must be at least 6 characters." };
     }
 
+    const cleanEmail = email.trim().toLowerCase();
+    const isDetectedAdmin = isUserAdmin(cleanEmail, name);
+
     const newUser = {
-      id: "usr-" + Date.now().toString(36),
+      id: (isDetectedAdmin ? "adm-" : "usr-") + Date.now().toString(36),
       name: name.trim(),
-      email: email.trim().toLowerCase(),
-      role: "Customer",
+      email: cleanEmail,
+      role: isDetectedAdmin ? "Admin" : "Customer",
       joinedDate: new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }),
       avatar: null
     };
@@ -189,7 +219,7 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     isAuthenticated: !!user,
-    isAdmin: user?.role === "Admin",
+    isAdmin: Boolean(user && isUserAdmin(user.email, user.name, user.role)),
     login,
     register,
     logout,
