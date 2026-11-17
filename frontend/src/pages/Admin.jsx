@@ -1188,25 +1188,26 @@ const Admin = () => {
       {/* ========================================================= */}
       {isProductModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-white/10 shadow-2xl p-6 sm:p-8">
+          <div className="product-editor relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-white/10 shadow-2xl p-6 sm:p-8">
             
             {/* Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-white/10">
+            <div className="product-editor-header flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-white/10">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-[#c2a677]/10 text-[#a8894d] dark:text-[#c2a677]">
                   {modalMode === "create" ? <Plus className="w-5 h-5 stroke-[2.5]" /> : <Edit className="w-5 h-5" />}
                 </div>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-neutral-950 dark:text-white">
-                    {modalMode === "create" ? "Add New Product to Catalog" : `Edit Product #${formData.id}`}
+                    {modalMode === "create" ? "Add product" : "Edit product"}
                   </h3>
                   <p className="text-xs text-neutral-500">
-                    {modalMode === "create" ? "Create a new product with full store attributes" : "Update product information, pricing and stock"}
+                    {modalMode === "create" ? "Add the essentials to your store." : "Update your product details."}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsProductModalOpen(false)}
+                aria-label="Close product editor"
                 className="p-2 rounded-xl text-neutral-400 hover:text-neutral-700 dark:hover:text-white cursor-pointer"
               >
                 <X className="w-5 h-5" />
@@ -1214,56 +1215,28 @@ const Admin = () => {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSaveProduct} className="space-y-4 pt-4">
+            <form onSubmit={handleSaveProduct} className="product-editor-form space-y-4 pt-4">
               
-              {/* Product Name */}
+              {/* Product name */}
               <div>
                 <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                  Product Name *
+                  Product name *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Minimalist Heavyweight Drop-Shoulder Tee"
+                  placeholder="e.g. Cotton T-shirt"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
                 />
               </div>
 
-              {/* Brand & SKU */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    Brand / Line
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. VELORA Studio"
-                    value={formData.brand}
-                    onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    SKU Code
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. VEL-0109"
-                    value={formData.sku}
-                    onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
-                  />
-                </div>
-              </div>
-
               {/* Price & Original Price (Sale) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    Selling Price ($ USD) *
+                    Price (USD) *
                   </label>
                   <input
                     type="number"
@@ -1283,7 +1256,7 @@ const Admin = () => {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    Original Price ($ USD) <span className="font-normal text-neutral-400">(for discount tag)</span>
+                    Original price (USD) <span className="font-normal text-neutral-400">(optional, for sales)</span>
                   </label>
                   <input
                     type="number"
@@ -1301,7 +1274,7 @@ const Admin = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    Primary Category
+                    Category
                   </label>
                   <select
                     value={formData.category}
@@ -1319,7 +1292,7 @@ const Admin = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. Tops, Shirts, Pants, Outerwear"
+                    placeholder="e.g. Tops"
                     value={formData.subCategory}
                     onChange={(e) => setFormData({ ...formData, subCategory: e.target.value })}
                     className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
@@ -1327,11 +1300,11 @@ const Admin = () => {
                 </div>
               </div>
 
-              {/* Stock Quantity & Status */}
+              {/* Quantity & Status */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
                 <div>
                   <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    Stock Quantity
+                    Quantity
                   </label>
                   <input
                     type="number"
@@ -1351,42 +1324,9 @@ const Admin = () => {
                       className="w-5 h-5 rounded text-[#c2a677] focus:ring-[#c2a677] cursor-pointer"
                     />
                     <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-200">
-                      Product In Stock (Available for purchase)
+                      Available for purchase
                     </span>
                   </label>
-                </div>
-              </div>
-
-              {/* Badge & Collection Drop */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    Store Badge
-                  </label>
-                  <select
-                    value={formData.badge}
-                    onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white cursor-pointer"
-                  >
-                    <option value="">No Badge</option>
-                    <option value="New">New Arrival</option>
-                    <option value="Sale">On Sale</option>
-                    <option value="Trending">Trending</option>
-                    <option value="Exclusive">Exclusive Studio</option>
-                    <option value="Best Seller">Best Seller</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                    Collection / Drop Title
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. DROP 003 — FUNDS PROJECT PAKISTAN"
-                    value={formData.drop}
-                    onChange={(e) => setFormData({ ...formData, drop: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
-                  />
                 </div>
               </div>
 
@@ -1394,7 +1334,7 @@ const Admin = () => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-                    Product Picture *
+                    Product photo *
                   </label>
                   <div className="flex items-center gap-1 bg-stone-100 dark:bg-neutral-800 p-0.5 rounded-lg text-[11px]">
                     <button
@@ -1406,7 +1346,7 @@ const Admin = () => {
                           : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
                       }`}
                     >
-                      📁 Upload My Picture
+                      📁 Upload
                     </button>
                     <button
                       type="button"
@@ -1417,7 +1357,7 @@ const Admin = () => {
                           : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
                       }`}
                     >
-                      🔗 Paste URL / Path
+                      🔗 Image link
                     </button>
                   </div>
                 </div>
@@ -1469,13 +1409,13 @@ const Admin = () => {
                         </div>
                         <div className="text-center sm:text-left">
                           <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400 mb-1">
-                            ✓ Picture Loaded Successfully
+                            ✓ Photo uploaded
                           </span>
                           <p className="text-xs font-bold text-neutral-950 dark:text-white">
-                            Your picture is ready for this product
+                            Photo ready
                           </p>
                           <p className="text-[11px] text-neutral-500 mt-0.5">
-                            Click here to change or drag & drop another photo
+                            Click or drop a new photo to replace it
                           </p>
                           <button
                             type="button"
@@ -1485,7 +1425,7 @@ const Admin = () => {
                             }}
                             className="mt-2 text-xs text-rose-500 font-semibold hover:underline cursor-pointer"
                           >
-                            Remove Picture
+                            Remove photo
                           </button>
                         </div>
                       </div>
@@ -1495,10 +1435,10 @@ const Admin = () => {
                           <Upload className="w-6 h-6 stroke-[2]" />
                         </div>
                         <p className="text-xs sm:text-sm font-bold text-neutral-950 dark:text-white">
-                          Click to select a picture from your computer
+                          Click to upload a photo
                         </p>
                         <p className="text-[11px] text-neutral-400 mt-1">
-                          or drag & drop your image file here (PNG, JPG, WEBP)
+                          or drag and drop a PNG, JPG, or WEBP
                         </p>
                       </div>
                     )}
@@ -1546,16 +1486,83 @@ const Admin = () => {
               {/* Description */}
               <div>
                 <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                  Product Description
+                  Description
                 </label>
                 <textarea
                   rows="3"
-                  placeholder="Detailed product fabric, origin, fit and craftsmanship details..."
+                  placeholder="Describe the fabric, fit, or other details"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
                 />
               </div>
+
+              <details className="product-editor-more">
+                <summary>More details <span>Brand, SKU, badge and collection</span></summary>
+                <div className="product-editor-more-content space-y-4">
+              {/* Brand & SKU */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+                    Brand
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. VELORA Studio"
+                    value={formData.brand}
+                    onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+                    SKU
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. VEL-0109"
+                    value={formData.sku}
+                    onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
+                  />
+                </div>
+              </div>
+
+              {/* Badge & Collection Drop */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+                    Badge
+                  </label>
+                  <select
+                    value={formData.badge}
+                    onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white cursor-pointer"
+                  >
+                    <option value="">No Badge</option>
+                    <option value="New">New Arrival</option>
+                    <option value="Sale">On Sale</option>
+                    <option value="Trending">Trending</option>
+                    <option value="Exclusive">Exclusive Studio</option>
+                    <option value="Best Seller">Best Seller</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+                    Collection
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. DROP 003 — FUNDS PROJECT PAKISTAN"
+                    value={formData.drop}
+                    onChange={(e) => setFormData({ ...formData, drop: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
+                  />
+                </div>
+              </div>
+
+                </div>
+              </details>
 
               {/* Form Action Buttons */}
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-neutral-200 dark:border-white/10">
@@ -1571,7 +1578,7 @@ const Admin = () => {
                   className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#c2a677] to-[#9a783e] text-neutral-950 text-xs font-bold shadow-lg hover:brightness-105 transition-all cursor-pointer flex items-center gap-2"
                 >
                   <Check className="w-4 h-4 stroke-[3]" />
-                  <span>{modalMode === "create" ? "Save New Product" : "Update Product"}</span>
+                  <span>{modalMode === "create" ? "Save product" : "Save changes"}</span>
                 </button>
               </div>
 
