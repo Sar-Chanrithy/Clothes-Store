@@ -9,6 +9,11 @@ import {
   formatKHR
 } from "../data/products";
 import {
+  getTelegramConfig,
+  saveTelegramConfig,
+  testTelegramBot
+} from "../utils/telegram";
+import {
   ShieldCheck,
   TrendingUp,
   Package,
@@ -41,7 +46,8 @@ import {
   ExternalLink,
   AlertTriangle,
   Image as ImageIcon,
-  Upload
+  Upload,
+  Send
 } from "lucide-react";
 
 // Predefined demo orders with realistic Cambodian customer data
@@ -243,6 +249,31 @@ const Admin = () => {
     paymentMethod: "ABA Pay",
     status: "Processing"
   });
+
+  // Telegram Bot Settings State
+  const [telegramConfig, setTelegramConfig] = useState(getTelegramConfig);
+  const [isTestingTelegram, setIsTestingTelegram] = useState(false);
+
+  const handleSaveTelegram = (e) => {
+    e.preventDefault();
+    saveTelegramConfig(telegramConfig);
+    showToast("Telegram Bot settings saved successfully!", "success");
+  };
+
+  const handleTestTelegram = async () => {
+    if (!telegramConfig.botToken || !telegramConfig.chatId) {
+      showToast("Please enter both Bot Token and Chat ID to test", "error");
+      return;
+    }
+    setIsTestingTelegram(true);
+    const result = await testTelegramBot(telegramConfig.botToken, telegramConfig.chatId);
+    setIsTestingTelegram(false);
+    if (result.success) {
+      showToast("Test notification sent to Telegram! Check your Telegram app.", "success");
+    } else {
+      showToast(`Telegram test failed: ${result.error || result.data?.description || "Check token/chat ID"}`, "error");
+    }
+  };
 
   // Toast notifications
   const [toast, setToast] = useState(null);
@@ -1114,6 +1145,115 @@ const Admin = () => {
           {activeTab === "settings" && (
             <div className="p-6 space-y-8 max-w-3xl">
               
+              {/* Telegram Bot Order Notifications Config */}
+              <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 shadow-sm space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-neutral-200 dark:border-white/10 gap-2">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-[#0088cc]/10 text-[#0088cc] flex-shrink-0">
+                      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm sm:text-base text-neutral-950 dark:text-white">
+                        Telegram Bot Automated Order Alerts
+                      </h4>
+                      <p className="text-xs text-neutral-500">
+                        Receive instant notifications on Telegram whenever a customer places an order
+                      </p>
+                    </div>
+                  </div>
+                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold self-start sm:self-auto ${
+                    telegramConfig.botToken && telegramConfig.chatId
+                      ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400"
+                      : "bg-amber-100 text-amber-800 dark:bg-amber-950/40 dark:text-amber-400"
+                  }`}>
+                    {telegramConfig.botToken && telegramConfig.chatId ? "✓ Bot Configured" : "Not Configured"}
+                  </span>
+                </div>
+
+                <form onSubmit={handleSaveTelegram} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+                        Telegram Bot Token
+                      </label>
+                      <input
+                        type="password"
+                        placeholder="e.g. 7123456789:AAH..."
+                        value={telegramConfig.botToken}
+                        onChange={(e) => setTelegramConfig({ ...telegramConfig, botToken: e.target.value })}
+                        className="w-full px-3.5 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs focus:outline-none focus:border-[#0088cc] text-neutral-900 dark:text-white font-mono"
+                      />
+                      <p className="text-[10px] text-neutral-400 mt-1">
+                        Created using @BotFather on Telegram
+                      </p>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+                        Telegram Chat ID / Group ID
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 123456789 or -100123456789"
+                        value={telegramConfig.chatId}
+                        onChange={(e) => setTelegramConfig({ ...telegramConfig, chatId: e.target.value })}
+                        className="w-full px-3.5 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs focus:outline-none focus:border-[#0088cc] text-neutral-900 dark:text-white font-mono"
+                      />
+                      <p className="text-[10px] text-neutral-400 mt-1">
+                        Your user ID or group ID to receive order alerts
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+                      Store Telegram Contact Username
+                    </label>
+                    <div className="flex items-center">
+                      <span className="px-3 py-2.5 bg-stone-200 dark:bg-neutral-800 text-neutral-500 rounded-l-xl text-xs border border-r-0 border-neutral-300 dark:border-white/10">
+                        t.me/
+                      </span>
+                      <input
+                        type="text"
+                        placeholder="rithystore"
+                        value={telegramConfig.storeUsername}
+                        onChange={(e) => setTelegramConfig({ ...telegramConfig, storeUsername: e.target.value })}
+                        className="flex-1 px-3.5 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-r-xl border border-neutral-300 dark:border-white/10 text-xs focus:outline-none focus:border-[#0088cc] text-neutral-900 dark:text-white"
+                      />
+                    </div>
+                    <p className="text-[10px] text-neutral-400 mt-1">
+                      Customers will tap this link to send order slips directly to your Telegram
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-2">
+                    <button
+                      type="submit"
+                      className="px-5 py-2.5 rounded-xl bg-[#0088cc] hover:bg-[#0077b5] text-white text-xs font-bold transition-all shadow-md cursor-pointer flex items-center gap-2"
+                    >
+                      <Check className="w-4 h-4 stroke-[2.5]" />
+                      <span>Save Telegram Settings</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled={isTestingTelegram || !telegramConfig.botToken || !telegramConfig.chatId}
+                      onClick={handleTestTelegram}
+                      className="px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-white/15 text-xs font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer flex items-center gap-2"
+                    >
+                      {isTestingTelegram ? (
+                        <RefreshCw className="w-4 h-4 animate-spin text-[#0088cc]" />
+                      ) : (
+                        <Send className="w-4 h-4 text-[#0088cc]" />
+                      )}
+                      <span>Test Telegram Bot Notification</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
               <div>
                 <h3 className="text-lg font-bold text-neutral-950 dark:text-white">Store Database & Catalog Controls</h3>
                 <p className="text-xs text-neutral-500 mt-1">

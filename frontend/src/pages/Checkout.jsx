@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
+import { sendTelegramOrderAlert, getDirectTelegramOrderUrl } from "../utils/telegram";
 import {
   ArrowLeft,
   CreditCard,
@@ -208,15 +209,42 @@ const Checkout = () => {
       setTimeout(() => {
         setIsProcessing(false);
         const orderNumber = "VEL-" + Math.floor(100000 + Math.random() * 900000);
-        setPlacedOrderDetails({
+        const orderData = {
           orderNumber,
-          customerName: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
+          customerName: `${formData.firstName} ${formData.lastName}`.trim() || user?.name || "Customer",
+          email: formData.email || user?.email || "customer@example.com",
+          phone: formData.phone || "+855 12 345 678",
           address: `${formData.address}, ${formData.city}`,
           shippingMethod: selectedShipping.label,
           items: [...items],
-          total: total
-        });
+          total: total,
+          paymentMethod: paymentMethod === "card" ? "Credit Card" : paymentMethod === "bakong" ? "ABA / Bakong KHQR" : "Cash on Delivery"
+        };
+
+        setPlacedOrderDetails(orderData);
+
+        // 1. Send automated alert to Telegram Bot
+        sendTelegramOrderAlert(orderData);
+
+        // 2. Persist to Admin Dashboard orders
+        try {
+          const existingOrders = JSON.parse(localStorage.getItem("velora_admin_orders") || "[]");
+          const newAdminOrder = {
+            id: `ORD-${orderNumber.replace("VEL-", "")}`,
+            customer: orderData.customerName,
+            phone: orderData.phone,
+            province: formData.city || "Phnom Penh",
+            items: (items || []).map(i => `${i.name} (x${i.quantity})`).join(", ") || "Store Order",
+            totalUSD: Number(total),
+            paymentMethod: orderData.paymentMethod,
+            status: "Processing",
+            date: "Just now"
+          };
+          localStorage.setItem("velora_admin_orders", JSON.stringify([newAdminOrder, ...existingOrders]));
+        } catch (e) {
+          console.error("Failed to sync order to admin storage", e);
+        }
+
         clearCart();
         setOrderComplete(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -226,6 +254,8 @@ const Checkout = () => {
 
   // Order Success Screen
   if (orderComplete && placedOrderDetails) {
+    const telegramUrl = getDirectTelegramOrderUrl(placedOrderDetails);
+
     return (
       <div className="bg-gray-50 dark:bg-gray-950 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto bg-white dark:bg-gray-900 rounded-3xl p-8 sm:p-10 shadow-2xl border border-gray-100 dark:border-gray-800 text-center animate-fade-in">
@@ -245,7 +275,7 @@ const Checkout = () => {
             <span className="font-semibold text-gray-800 dark:text-gray-200">{placedOrderDetails.email}</span>.
           </p>
 
-          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-200/60 dark:border-gray-700 text-left space-y-3 mb-8">
+          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-200/60 dark:border-gray-700 text-left space-y-3 mb-6">
             <div className="flex justify-between items-center text-xs pb-3 border-b border-gray-200 dark:border-gray-700">
               <span className="text-gray-500 dark:text-gray-400">Order Number</span>
               <span className="font-mono font-bold text-purple-600 dark:text-purple-400">
@@ -270,6 +300,27 @@ const Checkout = () => {
                 ${placedOrderDetails.total.toFixed(2)}
               </span>
             </div>
+          </div>
+
+          {/* Direct Telegram Action Card */}
+          <div className="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-center mb-6 space-y-2">
+            <div className="flex items-center justify-center gap-2 text-xs font-bold text-[#0088cc] dark:text-sky-400 uppercase tracking-wider">
+              <span>Telegram Order Confirmation</span>
+            </div>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-md mx-auto">
+              Send your payment slip or chat directly with our store team on Telegram to confirm faster dispatch:
+            </p>
+            <a
+              href={telegramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-6 bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold rounded-xl shadow-lg shadow-sky-500/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer text-sm"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+              </svg>
+              <span>Send Receipt on Telegram (@rithystore)</span>
+            </a>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
