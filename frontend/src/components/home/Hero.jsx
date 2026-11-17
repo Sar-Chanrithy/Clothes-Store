@@ -97,10 +97,50 @@ const Hero = ({ showFeatures = true }) => {
   };
 
   return (
-    <div className="relative bg-[#0c0c0e] dark:bg-neutral-950 text-white overflow-hidden transition-colors duration-300">
-      {/* Background Ambient Warm Lighting Glow matching store illumination */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] bg-[#c2a677]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/2 right-10 w-[460px] h-[460px] bg-amber-600/10 rounded-full blur-[160px] pointer-events-none" />
+    <div className="relative bg-[#09080b] dark:bg-[#070609] text-white overflow-hidden transition-colors duration-500">
+      
+      {/* 1. Multi-layered Ambient Luxury Mesh Gradients */}
+      {/* Top Center Chandelier Overhead Glow */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-amber-500/20 via-[#c2a677]/15 to-transparent rounded-full blur-[150px] pointer-events-none" />
+      
+      {/* Behind Showroom Card Radiant Warm Halo (Right) */}
+      <div className="absolute top-1/4 -right-16 w-[620px] h-[620px] bg-gradient-to-tr from-[#c2a677]/25 via-amber-600/15 to-rose-950/10 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[7000ms]" />
+
+      {/* Behind Left Headline Warm Champagne Spotlight (Left) */}
+      <div className="absolute top-1/3 -left-20 w-[540px] h-[540px] bg-gradient-to-br from-[#c2a677]/20 via-[#9a783e]/12 to-transparent rounded-full blur-[130px] pointer-events-none" />
+
+      {/* Bottom Center Deep Amber Velvet Tone */}
+      <div className="absolute -bottom-20 left-1/3 w-[650px] h-[350px] bg-gradient-to-t from-amber-900/15 via-[#c2a677]/10 to-transparent rounded-full blur-[130px] pointer-events-none" />
+
+      {/* 2. Ultra-Fine Luxury Dot Matrix / Architectural Grid with Smooth Radial Vignette Mask */}
+      <div 
+        className="absolute inset-0 opacity-[0.15] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(214, 188, 143, 0.5) 1.2px, transparent 0)`,
+          backgroundSize: "28px 28px",
+          maskImage: "radial-gradient(ellipse 85% 75% at 50% 45%, black 35%, transparent 95%)",
+          WebkitMaskImage: "radial-gradient(ellipse 85% 75% at 50% 45%, black 35%, transparent 95%)"
+        }}
+      />
+
+      {/* 3. Subtle Luxury Fine Grain Texture */}
+      <div 
+        className="absolute inset-0 opacity-[0.035] pointer-events-none mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+        }}
+      />
+
+      {/* 4. Giant Editorial Fashion House Watermark Typography */}
+      <div className="absolute -top-6 inset-x-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+        <span className="font-serif text-[12vw] font-black tracking-[0.26em] text-[#c2a677]/[0.032] whitespace-nowrap uppercase leading-none transform -translate-y-4">
+          RITHY ATELIER
+        </span>
+      </div>
+
+      {/* 5. Glowing Top & Bottom Hairline Accents */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#c2a677]/45 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#c2a677]/30 to-transparent pointer-events-none" />
 
       {/* ===== HERO MAIN BANNER SECTION ===== */}
       <section className="relative w-full border-b border-white/10">
@@ -111,7 +151,7 @@ const Hero = ({ showFeatures = true }) => {
             <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center z-10">
               
               {/* Eyebrow Tag */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-[#c2a677]/50 text-[#c2a677] text-xs font-semibold tracking-[0.22em] uppercase backdrop-blur-md w-fit mb-4 sm:mb-5 shadow-lg">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-[#c2a677]/60 text-[#d8c29d] text-xs font-semibold tracking-[0.22em] uppercase backdrop-blur-md w-fit mb-4 sm:mb-5 shadow-[0_0_20px_rgba(194,166,119,0.15)]">
                 <Sparkles className="w-3.5 h-3.5 text-[#c2a677]" />
                 <span>
                   {isKhmer ? "ហាងផ្ទាល់ខ្លួន & សម្លៀកបំពាក់ទាន់សម័យ" : "TREND WEAR • READYMADE"}
@@ -119,22 +159,26 @@ const Hero = ({ showFeatures = true }) => {
               </div>
 
               {/* Main Headline (Editorial Serif) */}
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif tracking-tight text-white uppercase leading-[1.05] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif tracking-tight text-white uppercase leading-[1.05] drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)]">
                 {isKhmer ? (
                   <>
                     ជម្រើសល្អ <br />
-                    <span className="text-[#c2a677] font-light">ស្ទីលទាន់សម័យ</span>
+                    <span className="bg-gradient-to-r from-[#e8d5b5] via-[#f7ecd7] to-[#c2a677] bg-clip-text text-transparent font-light">
+                      ស្ទីលទាន់សម័យ
+                    </span>
                   </>
                 ) : (
                   <>
                     GOOD CHOICE. <br />
-                    <span className="text-[#c2a677] font-light">GOOD STYLE.</span>
+                    <span className="bg-gradient-to-r from-[#e8d5b5] via-[#f7ecd7] to-[#c2a677] bg-clip-text text-transparent font-light">
+                      GOOD STYLE.
+                    </span>
                   </>
                 )}
               </h1>
 
               {/* Slogan */}
-              <p className="text-sm sm:text-lg font-light text-[#e5d5be] mt-3 sm:mt-4 tracking-wide drop-shadow">
+              <p className="text-sm sm:text-lg font-light text-[#f0e3ce] mt-3 sm:mt-4 tracking-wide drop-shadow">
                 {isKhmer ? "ស្ទីលសម្រាប់អ្នកគ្រប់គ្នា (Style For Every You)" : "Style For Every You."}
               </p>
 
@@ -150,7 +194,7 @@ const Hero = ({ showFeatures = true }) => {
                 {/* Primary Button */}
                 <Link
                   to="/shop"
-                  className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 bg-[#c2a677] hover:bg-[#d6bc8f] text-neutral-950 font-bold tracking-[0.18em] text-xs sm:text-sm uppercase rounded transition-all duration-300 shadow-xl hover:shadow-[#c2a677]/30 hover:-translate-y-0.5 active:translate-y-0"
+                  className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#c2a677] via-[#d6bc8f] to-[#b89a66] hover:from-[#d6bc8f] hover:to-[#c2a677] text-neutral-950 font-bold tracking-[0.18em] text-xs sm:text-sm uppercase rounded transition-all duration-300 shadow-[0_8px_25px_rgba(194,166,119,0.35)] hover:shadow-[0_12px_35px_rgba(194,166,119,0.5)] hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <span>{isKhmer ? "ទិញឥឡូវនេះ" : "SHOP NOW"}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -185,12 +229,17 @@ const Hero = ({ showFeatures = true }) => {
 
             {/* Right Column: High-Resolution Boutique Storefront Card Carousel with Horizontal Auto-Slide */}
             <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end">
-              <div
-                className="group relative block w-full max-w-[540px] aspect-square rounded-2xl overflow-hidden border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(194,166,119,0.15)] transition-all duration-700 hover:border-[#c2a677]/60 hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_60px_rgba(194,166,119,0.25)] select-none"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
+              <div className="relative w-full max-w-[540px]">
+                
+                {/* Glowing Ambient Halo behind Showroom Card */}
+                <div className="absolute -inset-4 bg-gradient-to-tr from-[#c2a677]/35 via-amber-500/20 to-purple-900/10 rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                <div
+                  className="group relative block w-full aspect-square rounded-2xl overflow-hidden border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_50px_rgba(194,166,119,0.2)] transition-all duration-700 hover:border-[#c2a677]/80 hover:shadow-[0_30px_70px_rgba(0,0,0,0.95),0_0_70px_rgba(194,166,119,0.35)] select-none"
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                >
                 {/* Horizontal Sliding Track */}
                 <Link
                   to="/shop"
@@ -279,14 +328,17 @@ const Hero = ({ showFeatures = true }) => {
                 </div>
               </div>
             </div>
-
           </div>
-        </div>
 
-        {/* ===== BOTTOM 4-COLUMN LUXURY FEATURES BAR ===== */}
-        {showFeatures && (
-          <div className="relative z-20 w-full bg-[#09090b] border-t border-white/10 py-5 sm:py-6 transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        </div>
+      </div>
+
+      {/* ===== BOTTOM 4-COLUMN LUXURY FEATURES BAR ===== */}
+      {showFeatures && (
+        <div className="relative z-20 w-full bg-[#08070a]/90 backdrop-blur-xl border-t border-white/10 py-5 sm:py-6 transition-colors duration-300 shadow-[0_-10px_35px_rgba(0,0,0,0.6)]">
+          {/* Subtle Golden Top Accent Hairline */}
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#c2a677]/40 to-transparent pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
               <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 gap-4 md:gap-0">
                 
                 {/* Feature 1: Premium Fabrics */}
