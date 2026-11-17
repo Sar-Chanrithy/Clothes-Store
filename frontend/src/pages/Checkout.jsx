@@ -39,6 +39,7 @@ const Checkout = () => {
   } = useCart();
 
   const [step, setStep] = useState(1);
+  const [paymentMethod, setPaymentMethod] = useState("card");
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [placedOrderDetails, setPlacedOrderDetails] = useState(null);
@@ -61,22 +62,22 @@ const Checkout = () => {
 
   // Form state pre-populated with user profile if available
   const [formData, setFormData] = useState({
-    firstName: user?.name ? user.name.split(" ")[0] : "",
-    lastName: user?.name && user.name.split(" ").length > 1 ? user.name.split(" ").slice(1).join(" ") : "",
-    email: user?.email || "",
-    phone: user?.phone || "",
-    address: user?.address?.street || "",
-    apartment: user?.address?.apartment || "",
-    city: user?.address?.city || "",
-    country: "US",
+    firstName: user?.name ? user.name.split(" ")[0] : "Admin",
+    lastName: user?.name && user.name.split(" ").length > 1 ? user.name.split(" ").slice(1).join(" ") : "Rithy",
+    email: user?.email || "admin@rithystore.com",
+    phone: user?.phone || "+855 12 345 678",
+    address: user?.address?.street || "Preah Monivong Blvd",
+    apartment: user?.address?.apartment || "Suite 4B",
+    city: user?.address?.city || "Phnom Penh",
+    country: "KH",
     saveInfo: true,
     // Shipping method
     shippingMethod: "standard",
     // Payment
-    cardNumber: "4242 â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ 4242",
-    cardName: user?.name || "John Doe",
-    expiryDate: "",
-    cvv: "",
+    cardNumber: "4242 •••• •••• 4242",
+    cardName: user?.name || "Admin Rithy",
+    expiryDate: "12/28",
+    cvv: "888",
     saveCard: true,
     // Billing
     sameAsShipping: true,
@@ -181,10 +182,12 @@ const Checkout = () => {
     }
 
     if (currentStep === 3) {
-      if (!formData.cardNumber.trim()) newErrors.cardNumber = "Card number is required";
-      if (!formData.cardName.trim()) newErrors.cardName = "Name on card is required";
-      if (!formData.expiryDate.trim()) newErrors.expiryDate = "Expiry date is required";
-      if (!formData.cvv.trim()) newErrors.cvv = "CVV is required";
+      if (paymentMethod === "card") {
+        if (!formData.cardNumber || !formData.cardNumber.trim()) newErrors.cardNumber = "Card number is required";
+        if (!formData.cardName || !formData.cardName.trim()) newErrors.cardName = "Name on card is required";
+        if (!formData.expiryDate || !formData.expiryDate.trim()) newErrors.expiryDate = "Expiry date is required";
+        if (!formData.cvv || !formData.cvv.trim()) newErrors.cvv = "Security code (CVV) is required";
+      }
     }
 
     setErrors(newErrors);
@@ -209,22 +212,32 @@ const Checkout = () => {
       setTimeout(() => {
         setIsProcessing(false);
         const orderNumber = "VEL-" + Math.floor(100000 + Math.random() * 900000);
+        const paymentLabel = paymentMethod === "bakong" 
+          ? "ABA / Bakong KHQR" 
+          : paymentMethod === "cod" 
+            ? "Cash on Delivery" 
+            : "Credit Card";
+
         const orderData = {
           orderNumber,
-          customerName: `${formData.firstName} ${formData.lastName}`.trim() || user?.name || "Customer",
-          email: formData.email || user?.email || "customer@example.com",
+          customerName: `${formData.firstName} ${formData.lastName}`.trim() || user?.name || "Admin Rithy",
+          email: formData.email || user?.email || "admin@rithystore.com",
           phone: formData.phone || "+855 12 345 678",
           address: `${formData.address}, ${formData.city}`,
           shippingMethod: selectedShipping.label,
           items: [...items],
           total: total,
-          paymentMethod: paymentMethod === "card" ? "Credit Card" : paymentMethod === "bakong" ? "ABA / Bakong KHQR" : "Cash on Delivery"
+          paymentMethod: paymentLabel
         };
 
         setPlacedOrderDetails(orderData);
 
         // 1. Send automated alert to Telegram Bot
-        sendTelegramOrderAlert(orderData);
+        try {
+          sendTelegramOrderAlert(orderData);
+        } catch (tgErr) {
+          console.error("Telegram alert error:", tgErr);
+        }
 
         // 2. Persist to Admin Dashboard orders
         try {
@@ -711,83 +724,168 @@ const Checkout = () => {
                     <div>
                       <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         <CreditCard className="w-5 h-5 text-purple-500" />
-                        Payment
+                        Payment Method
                       </h2>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Demo checkout: no payment will be charged.
+                        Select your preferred payment method below
                       </p>
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Card Number <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="cardNumber"
-                      value={formData.cardNumber}
-                      onChange={handleInputChange}
-                      placeholder="Card number"
-                      className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white font-mono"
-                    />
-                    {errors.cardNumber && (
-                      <p className="text-xs text-red-500 mt-1">{errors.cardNumber}</p>
-                    )}
+                  {/* Payment Method Selector */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("card")}
+                      className={`p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer ${
+                        paymentMethod === "card"
+                          ? "border-purple-600 bg-purple-50/50 dark:bg-purple-900/20 shadow-sm"
+                          : "border-gray-200 dark:border-gray-800 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <CreditCard className={`w-5 h-5 ${paymentMethod === "card" ? "text-purple-600 dark:text-purple-400" : "text-gray-400"}`} />
+                        {paymentMethod === "card" && <Check className="w-4 h-4 text-purple-600 dark:text-purple-400 stroke-[3]" />}
+                      </div>
+                      <p className="font-bold text-xs sm:text-sm text-gray-900 dark:text-white">Credit / Debit Card</p>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Visa, Mastercard</p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("bakong")}
+                      className={`p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer ${
+                        paymentMethod === "bakong"
+                          ? "border-[#0088cc] bg-sky-50/50 dark:bg-sky-950/20 shadow-sm"
+                          : "border-gray-200 dark:border-gray-800 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="w-5 h-5 rounded-md bg-[#0088cc] text-white flex items-center justify-center text-[10px] font-black">
+                          QR
+                        </div>
+                        {paymentMethod === "bakong" && <Check className="w-4 h-4 text-[#0088cc] stroke-[3]" />}
+                      </div>
+                      <p className="font-bold text-xs sm:text-sm text-gray-900 dark:text-white">ABA / Bakong KHQR</p>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Instant Scan & Telegram</p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("cod")}
+                      className={`p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer ${
+                        paymentMethod === "cod"
+                          ? "border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 shadow-sm"
+                          : "border-gray-200 dark:border-gray-800 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <Package className={`w-5 h-5 ${paymentMethod === "cod" ? "text-emerald-600 dark:text-emerald-400" : "text-gray-400"}`} />
+                        {paymentMethod === "cod" && <Check className="w-4 h-4 text-emerald-600 stroke-[3]" />}
+                      </div>
+                      <p className="font-bold text-xs sm:text-sm text-gray-900 dark:text-white">Cash on Delivery</p>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Pay upon package arrival</p>
+                    </button>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Name on Card <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="cardName"
-                      value={formData.cardName}
-                      onChange={handleInputChange}
-                      placeholder="e.g. John Doe"
-                      className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white"
-                    />
-                    {errors.cardName && (
-                      <p className="text-xs text-red-500 mt-1">{errors.cardName}</p>
-                    )}
-                  </div>
+                  {/* Payment Details Content */}
+                  {paymentMethod === "card" && (
+                    <div className="space-y-4 p-4 sm:p-5 rounded-2xl bg-gray-50/70 dark:bg-gray-800/40 border border-gray-200 dark:border-gray-700 animate-fade-in">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                          Card Number <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="cardNumber"
+                          value={formData.cardNumber}
+                          onChange={handleInputChange}
+                          placeholder="4242 4242 4242 4242"
+                          className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white font-mono text-sm"
+                        />
+                        {errors.cardNumber && (
+                          <p className="text-xs text-red-500 mt-1">{errors.cardNumber}</p>
+                        )}
+                      </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Expiry Date <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="expiryDate"
-                        value={formData.expiryDate}
-                        onChange={handleInputChange}
-                        placeholder="MM/YY"
-                        className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white"
-                      />
-                      {errors.expiryDate && (
-                        <p className="text-xs text-red-500 mt-1">{errors.expiryDate}</p>
-                      )}
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                          Name on Card <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="cardName"
+                          value={formData.cardName}
+                          onChange={handleInputChange}
+                          placeholder="Admin Rithy"
+                          className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white text-sm"
+                        />
+                        {errors.cardName && (
+                          <p className="text-xs text-red-500 mt-1">{errors.cardName}</p>
+                        )}
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                            Expiry Date <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="expiryDate"
+                            value={formData.expiryDate}
+                            onChange={handleInputChange}
+                            placeholder="MM/YY (e.g. 12/28)"
+                            className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white text-sm"
+                          />
+                          {errors.expiryDate && (
+                            <p className="text-xs text-red-500 mt-1">{errors.expiryDate}</p>
+                          )}
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                            Security code (CVV) <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="password"
+                            name="cvv"
+                            value={formData.cvv}
+                            onChange={handleInputChange}
+                            placeholder="888"
+                            maxLength="4"
+                            className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white font-mono text-sm"
+                          />
+                          {errors.cvv && (
+                            <p className="text-xs text-red-500 mt-1">{errors.cvv}</p>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Security code <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="password"
-                        name="cvv"
-                        value={formData.cvv}
-                        onChange={handleInputChange}
-                        placeholder="â€¢â€¢â€¢"
-                        maxLength="4"
-                        className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white font-mono"
-                      />
-                      {errors.cvv && (
-                        <p className="text-xs text-red-500 mt-1">{errors.cvv}</p>
-                      )}
+                  )}
+
+                  {paymentMethod === "bakong" && (
+                    <div className="p-5 rounded-2xl bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800/50 space-y-3 animate-fade-in text-center sm:text-left">
+                      <div className="flex items-center gap-2.5 text-sky-700 dark:text-sky-300 font-bold text-sm">
+                        <CheckCircle2 className="w-5 h-5 text-[#0088cc]" />
+                        <span>ABA Pay & Bakong KHQR Instant Checkout</span>
+                      </div>
+                      <p className="text-xs text-sky-800 dark:text-sky-300/80 leading-relaxed">
+                        After placing your order, an instant receipt will be generated. You can tap <strong>"Send Receipt on Telegram (@rithystore)"</strong> to send your KHQR transaction slip directly to our concierge team for immediate fulfillment.
+                      </p>
                     </div>
-                  </div>
+                  )}
+
+                  {paymentMethod === "cod" && (
+                    <div className="p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 space-y-3 animate-fade-in text-center sm:text-left">
+                      <div className="flex items-center gap-2.5 text-emerald-800 dark:text-emerald-300 font-bold text-sm">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                        <span>Cash on Delivery (ទូទាត់ពេលដឹកជញ្ជូនដល់)</span>
+                      </div>
+                      <p className="text-xs text-emerald-800 dark:text-emerald-300/80 leading-relaxed">
+                        No advance payment required. You can pay cash directly to the delivery courier in USD ($) or Cambodian Riel (៛) upon inspecting your items.
+                      </p>
+                    </div>
+                  )}
 
                   <div className="flex gap-4 pt-4">
                     <button

@@ -3,27 +3,34 @@
 const STORAGE_KEY = "velora_telegram_config";
 
 export const DEFAULT_TELEGRAM_CONFIG = {
-  botToken: "",
-  chatId: "",
+  botToken: "9161184806:AAEvY4PIfcKN39VtAdmFiCbSRG483MvSy7Y",
+  chatId: "1116505751",
   storeUsername: "rithystore" // t.me/rithystore
 };
 
 export const getTelegramConfig = () => {
+  let config = {
+    botToken: DEFAULT_TELEGRAM_CONFIG.botToken || import.meta.env.VITE_TELEGRAM_BOT_TOKEN || "",
+    chatId: DEFAULT_TELEGRAM_CONFIG.chatId || import.meta.env.VITE_TELEGRAM_CHAT_ID || "",
+    storeUsername: DEFAULT_TELEGRAM_CONFIG.storeUsername || import.meta.env.VITE_TELEGRAM_USERNAME || "rithystore"
+  };
+
   if (typeof window !== "undefined") {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        return { ...DEFAULT_TELEGRAM_CONFIG, ...JSON.parse(stored) };
+        const parsed = JSON.parse(stored);
+        return {
+          botToken: parsed.botToken?.trim() ? parsed.botToken.trim() : config.botToken,
+          chatId: parsed.chatId?.trim() ? parsed.chatId.trim() : config.chatId,
+          storeUsername: parsed.storeUsername?.trim() ? parsed.storeUsername.trim() : config.storeUsername
+        };
       }
     } catch (e) {
       console.warn("Could not read telegram config", e);
     }
   }
-  return {
-    botToken: import.meta.env.VITE_TELEGRAM_BOT_TOKEN || "",
-    chatId: import.meta.env.VITE_TELEGRAM_CHAT_ID || "",
-    storeUsername: import.meta.env.VITE_TELEGRAM_USERNAME || "rithystore"
-  };
+  return config;
 };
 
 export const saveTelegramConfig = (config) => {
