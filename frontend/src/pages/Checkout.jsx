@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -74,7 +74,7 @@ const Checkout = () => {
     // Shipping method
     shippingMethod: "standard",
     // Payment
-    cardNumber: "4242 •••• •••• 4242",
+    cardNumber: "4242 â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ 4242",
     cardName: user?.name || "John Doe",
     expiryDate: "12/28",
     cvv: "888",
@@ -298,7 +298,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-950 min-h-screen py-8">
+    <div className="checkout-page bg-gray-50 dark:bg-gray-950 min-h-screen py-8">
       {/* Page Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <div className="flex items-center justify-between">
@@ -307,7 +307,7 @@ const Checkout = () => {
               Checkout
             </h1>
             <p className="text-gray-500 dark:text-gray-400 mt-1 text-sm">
-              Please fill your customer information and complete your order
+              A few details and your order is on its way.
             </p>
           </div>
           <Link
@@ -322,9 +322,9 @@ const Checkout = () => {
 
       {/* Progress Steps */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="flex items-center justify-center">
+        <div className="checkout-progress flex items-center justify-center">
           {[
-            { num: 1, label: "Customer Info" },
+            { num: 1, label: "Details" },
             { num: 2, label: "Shipping" },
             { num: 3, label: "Payment" }
           ].map((item, idx) => (
@@ -363,7 +363,7 @@ const Checkout = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Checkout Steps Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-800">
+            <div className="checkout-card checkout-form bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-800">
               
               {/* Step 1: Customer Information */}
               {step === 1 && (
@@ -372,10 +372,10 @@ const Checkout = () => {
                     <div>
                       <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         <User className="w-5 h-5 text-purple-500" />
-                        Customer Information
+                        Contact & delivery
                       </h2>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Fill in your customer contact details and delivery address
+                        Where should we send your order?
                       </p>
                     </div>
 
@@ -387,7 +387,7 @@ const Checkout = () => {
                       title="Quickly fill in sample customer information"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-purple-500 animate-pulse" />
-                      <span>Autofill Customer Info</span>
+                      <span>Autofill details</span>
                     </button>
                   </div>
 
@@ -525,7 +525,7 @@ const Checkout = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Apartment, Suite, Unit (Optional)
+                      Apartment, suite, etc. (optional)
                     </label>
                     <input
                       type="text"
@@ -587,7 +587,7 @@ const Checkout = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        ZIP / Postal Code <span className="text-red-500">*</span>
+                        Postal code <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -619,16 +619,16 @@ const Checkout = () => {
                       className="w-4 h-4 rounded border-gray-300 text-purple-500 focus:ring-purple-500 cursor-pointer"
                     />
                     <label htmlFor="saveInfo" className="text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
-                      Save this customer information for faster checkout next time
+                      Save my details for next time
                     </label>
                   </div>
 
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] cursor-pointer"
+                    className="checkout-primary w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] cursor-pointer"
                   >
-                    <span>Continue to Shipping</span>
+                    <span>Continue to shipping</span>
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
@@ -690,14 +690,14 @@ const Checkout = () => {
                       onClick={prevStep}
                       className="flex-1 py-3.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer"
                     >
-                      Back to Customer Info
+                      Back to details
                     </button>
                     <button
                       type="button"
                       onClick={nextStep}
-                      className="flex-1 py-3.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] cursor-pointer"
+                      className="checkout-primary flex-1 py-3.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] cursor-pointer"
                     >
-                      Continue to Payment
+                      Continue to payment
                       <ChevronRight className="w-5 h-5" />
                     </button>
                   </div>
@@ -711,10 +711,10 @@ const Checkout = () => {
                     <div>
                       <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         <CreditCard className="w-5 h-5 text-purple-500" />
-                        Payment Information
+                        Payment
                       </h2>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Encrypted with 256-bit SSL luxury security
+                        Enter your payment details
                       </p>
                     </div>
                   </div>
@@ -772,14 +772,14 @@ const Checkout = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        CVV Security Code <span className="text-red-500">*</span>
+                        Security code <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="password"
                         name="cvv"
                         value={formData.cvv}
                         onChange={handleInputChange}
-                        placeholder="•••"
+                        placeholder="â€¢â€¢â€¢"
                         maxLength="4"
                         className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white font-mono"
                       />
@@ -801,7 +801,7 @@ const Checkout = () => {
                       type="button"
                       onClick={placeOrder}
                       disabled={isProcessing}
-                      className="flex-1 py-3.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                      className="checkout-primary flex-1 py-3.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                     >
                       {isProcessing ? (
                         <>
@@ -823,11 +823,11 @@ const Checkout = () => {
 
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div className="checkout-card checkout-summary sticky top-24 bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                   <ShoppingBag className="w-5 h-5 text-purple-500" />
-                  Order Summary
+                  Your order
                 </h2>
                 <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
                   {items.length} {items.length === 1 ? "item" : "items"}
@@ -852,7 +852,7 @@ const Checkout = () => {
                         {item.name}
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
-                        Qty: {item.quantity} • Size: {item.size || "M"} • {item.color || "Default"}
+                        Qty: {item.quantity} â€¢ Size: {item.size || "M"} â€¢ {item.color || "Default"}
                       </p>
                       <p className="text-sm font-bold text-purple-600 dark:text-purple-400 mt-0.5">
                         ${(item.price * item.quantity).toFixed(2)}

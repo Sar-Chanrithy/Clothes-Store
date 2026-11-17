@@ -126,3 +126,42 @@ html:not(.dark) ::-webkit-scrollbar-thumb:hover {
 .dark .product-editor-more { background: #20201e; border-color: #383631; }
 .dark .product-editor-more summary { color: #f4f1eb; }
 @media (max-width: 640px) { .product-editor-more summary span { display: block; margin: 5px 0 0 16px; } }
+
+/* Checkout */
+.checkout-page { background: #f6f4f0; padding-top: 48px; padding-bottom: 72px; }
+.checkout-page > div { max-width: 1200px; }
+.checkout-page h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.045em; }
+.checkout-page h2 { letter-spacing: -0.025em; }
+.checkout-page > div:first-child { margin-bottom: 32px; }
+.checkout-page > div:first-child a { color: #8c7249; }
+.checkout-progress { justify-content: flex-start; padding: 16px 20px; border: 1px solid #e9e4dc; border-radius: 14px; background: #fff; }
+.checkout-progress > div { flex-shrink: 0; }
+.checkout-progress .bg-gradient-to-r { background: #ae9162; box-shadow: none; }
+.checkout-progress .bg-purple-500 { background: #ae9162; }
+.checkout-card { background: #fff; border: 1px solid #e9e4dc; border-radius: 18px; box-shadow: 0 10px 35px rgb(55 44 30 / 4%); }
+.checkout-form { padding: 32px; }
+.checkout-form h2 svg, .checkout-summary h2 svg { color: #ae9162; }
+.checkout-form input:not([type="checkbox"]):not([type="radio"]) { min-height: 48px; background: #faf9f7; border-color: #e5e1da; border-radius: 10px; }
+.checkout-form input:focus { --tw-ring-color: #c4aa80; }
+.checkout-form input[type="checkbox"], .checkout-form input[type="radio"] { accent-color: #a78958; }
+.checkout-form label { margin-bottom: 7px; font-size: 0.8125rem; }
+.checkout-primary { background: #aa8d5e; color: #fff; box-shadow: none; }
+.checkout-primary:hover { background: #917548; box-shadow: none; transform: none; }
+.checkout-summary { padding: 26px; }
+.checkout-summary img { width: 64px; height: 72px; border-radius: 9px; }
+.checkout-summary .text-purple-600 { color: #977b50; }
+.dark .checkout-page { background: #10100f; }
+.dark .checkout-progress, .dark .checkout-card { background: #1b1b19; border-color: #37352f; }
+.dark .checkout-form input:not([type="checkbox"]):not([type="radio"]) { background: #121211; border-color: #39372f; }
+.dark .checkout-summary .dark\:text-purple-400 { color: #c8ad80; }
+@media (max-width: 640px) {
+  .checkout-page { padding-top: 28px; }
+  .checkout-page > div:first-child > div { align-items: flex-start; gap: 16px; }
+  .checkout-page > div:first-child a { white-space: nowrap; margin-top: 10px; }
+  .checkout-progress { justify-content: space-between; padding: 12px; }
+  .checkout-progress > div { gap: 5px; }
+  .checkout-progress > div > div { width: 30px; height: 30px; font-size: 12px; }
+  .checkout-progress > div > span { font-size: 11px; }
+  .checkout-progress > div.h-0\.5 { flex: 1; min-width: 8px; margin: 0 5px; }
+  .checkout-form { padding: 22px; }
+}
