@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -67,8 +67,6 @@ const Checkout = () => {
     address: user?.address?.street || "",
     apartment: user?.address?.apartment || "",
     city: user?.address?.city || "",
-    state: user?.address?.state || "",
-    zipCode: user?.address?.zipCode || "",
     country: "US",
     saveInfo: true,
     // Shipping method
@@ -76,8 +74,8 @@ const Checkout = () => {
     // Payment
     cardNumber: "4242 â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ 4242",
     cardName: user?.name || "John Doe",
-    expiryDate: "12/28",
-    cvv: "888",
+    expiryDate: "",
+    cvv: "",
     saveCard: true,
     // Billing
     sameAsShipping: true,
@@ -150,8 +148,6 @@ const Checkout = () => {
       address: user?.address?.street || "742 Evergreen Terrace",
       apartment: user?.address?.apartment || "Suite 4B",
       city: user?.address?.city || "New York",
-      state: user?.address?.state || "NY",
-      zipCode: user?.address?.zipCode || "10001",
       country: "US"
     }));
     setErrors({});
@@ -171,8 +167,6 @@ const Checkout = () => {
       }
       if (!formData.address.trim()) newErrors.address = "Street address is required";
       if (!formData.city.trim()) newErrors.city = "City is required";
-      if (!formData.state.trim()) newErrors.state = "State is required";
-      if (!formData.zipCode.trim()) newErrors.zipCode = "ZIP code is required";
 
       if (Object.keys(newErrors).length > 0) {
         setGeneralError("Please fill in all required customer information below to continue.");
@@ -218,7 +212,7 @@ const Checkout = () => {
           orderNumber,
           customerName: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
-          address: `${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}`,
+          address: `${formData.address}, ${formData.city}`,
           shippingMethod: selectedShipping.label,
           items: [...items],
           total: total
@@ -537,8 +531,8 @@ const Checkout = () => {
                     />
                   </div>
 
-                  {/* City, State, ZIP */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* City */}
+                  <div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                         City <span className="text-red-500">*</span>
@@ -562,51 +556,6 @@ const Checkout = () => {
                       )}
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        State / Province <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="state"
-                        value={formData.state}
-                        onChange={handleInputChange}
-                        placeholder="e.g. NY"
-                        className={`w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border rounded-xl focus:outline-none focus:ring-2 dark:text-white transition-colors ${
-                          errors.state
-                            ? "border-red-400 focus:ring-red-400 bg-red-50/20"
-                            : "border-gray-200 dark:border-gray-700 focus:ring-purple-500"
-                        }`}
-                      />
-                      {errors.state && (
-                        <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.state}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Postal code <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="zipCode"
-                        value={formData.zipCode}
-                        onChange={handleInputChange}
-                        placeholder="e.g. 10001"
-                        className={`w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border rounded-xl focus:outline-none focus:ring-2 dark:text-white transition-colors ${
-                          errors.zipCode
-                            ? "border-red-400 focus:ring-red-400 bg-red-50/20"
-                            : "border-gray-200 dark:border-gray-700 focus:ring-purple-500"
-                        }`}
-                      />
-                      {errors.zipCode && (
-                        <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.zipCode}
-                        </p>
-                      )}
-                    </div>
                   </div>
 
                   <div className="flex items-center gap-2 pt-2">
@@ -714,7 +663,7 @@ const Checkout = () => {
                         Payment
                       </h2>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Enter your payment details
+                        Demo checkout: no payment will be charged.
                       </p>
                     </div>
                   </div>
@@ -728,7 +677,7 @@ const Checkout = () => {
                       name="cardNumber"
                       value={formData.cardNumber}
                       onChange={handleInputChange}
-                      placeholder="4242 4242 4242 4242"
+                      placeholder="Card number"
                       className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white font-mono"
                     />
                     {errors.cardNumber && (
