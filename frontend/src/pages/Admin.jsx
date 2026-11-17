@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import {
@@ -40,7 +40,8 @@ import {
   Tag,
   ExternalLink,
   AlertTriangle,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Upload
 } from "lucide-react";
 
 // Predefined demo orders with realistic Cambodian customer data
@@ -168,6 +169,51 @@ const Admin = () => {
     colors: ["Black", "White", "Navy"],
     description: ""
   });
+
+  const [imageInputTab, setImageInputTab] = useState("upload"); // "upload" | "url"
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const handleFileUpload = (file) => {
+    if (!file || !file.type.startsWith("image/")) {
+      showToast("Please select a valid image file (PNG, JPG, WEBP)", "error");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 1000;
+        const MAX_HEIGHT = 1200;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+
+        canvas.width = Math.round(width);
+        canvas.height = Math.round(height);
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const compressedDataUrl = canvas.toDataURL(file.type === "image/png" ? "image/png" : "image/jpeg", 0.9);
+        setFormData((prev) => ({ ...prev, image: compressedDataUrl }));
+        showToast("Your picture has been uploaded!", "success");
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
 
   // Orders State (CRUD)
   const [orders, setOrders] = useState(() => {
@@ -1344,45 +1390,157 @@ const Admin = () => {
                 </div>
               </div>
 
-              {/* Image URL & Preview */}
-              <div>
-                <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
-                  Product Image URL or Path
-                </label>
-                <div className="flex gap-3">
-                  <input
-                    type="text"
-                    placeholder="/images/products/tee-grey-melange-crewneck.jpg or https://..."
-                    value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    className="flex-1 px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
-                  />
-                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200 dark:border-white/10 flex-shrink-0">
-                    <img
-                      src={formData.image || "/images/products/tee-grey-melange-crewneck.jpg"}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.src = "/images/products/tee-grey-melange-crewneck.jpg";
-                      }}
-                    />
+              {/* Product Picture: Upload from Computer or Enter URL */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+                    Product Picture *
+                  </label>
+                  <div className="flex items-center gap-1 bg-stone-100 dark:bg-neutral-800 p-0.5 rounded-lg text-[11px]">
+                    <button
+                      type="button"
+                      onClick={() => setImageInputTab("upload")}
+                      className={`px-3 py-1 rounded-md font-medium transition-colors cursor-pointer ${
+                        imageInputTab === "upload"
+                          ? "bg-white dark:bg-neutral-900 text-neutral-950 dark:text-white shadow-xs font-bold"
+                          : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                      }`}
+                    >
+                      📁 Upload My Picture
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setImageInputTab("url")}
+                      className={`px-3 py-1 rounded-md font-medium transition-colors cursor-pointer ${
+                        imageInputTab === "url"
+                          ? "bg-white dark:bg-neutral-900 text-neutral-950 dark:text-white shadow-xs font-bold"
+                          : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                      }`}
+                    >
+                      🔗 Paste URL / Path
+                    </button>
                   </div>
                 </div>
 
-                {/* Preset Fast Picker */}
-                <div className="mt-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
-                  <span className="text-[10px] text-neutral-400 whitespace-nowrap">Presets:</span>
-                  {PRESET_IMAGE_OPTIONS.slice(0, 5).map((preset) => (
-                    <button
-                      key={preset.url}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, image: preset.url })}
-                      className="px-2 py-1 bg-stone-100 dark:bg-neutral-800 text-[10px] rounded-lg whitespace-nowrap hover:bg-[#c2a677] hover:text-neutral-950 transition-colors"
-                    >
-                      {preset.label}
-                    </button>
-                  ))}
-                </div>
+                {imageInputTab === "upload" ? (
+                  <div
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      setIsDragging(true);
+                    }}
+                    onDragLeave={() => setIsDragging(false)}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setIsDragging(false);
+                      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                        handleFileUpload(e.dataTransfer.files[0]);
+                      }
+                    }}
+                    onClick={() => fileInputRef.current?.click()}
+                    className={`relative border-2 border-dashed rounded-2xl p-6 text-center transition-all cursor-pointer ${
+                      isDragging
+                        ? "border-[#c2a677] bg-[#c2a677]/10"
+                        : "border-neutral-300 dark:border-white/15 hover:border-neutral-400 bg-stone-50 dark:bg-neutral-950"
+                    }`}
+                  >
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          handleFileUpload(e.target.files[0]);
+                        }
+                      }}
+                    />
+
+                    {formData.image ? (
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <div className="w-24 h-28 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-white/10 shadow-lg flex-shrink-0">
+                          <img
+                            src={formData.image}
+                            alt="Preview"
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.src = "/images/products/tee-grey-melange-crewneck.jpg";
+                            }}
+                          />
+                        </div>
+                        <div className="text-center sm:text-left">
+                          <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400 mb-1">
+                            ✓ Picture Loaded Successfully
+                          </span>
+                          <p className="text-xs font-bold text-neutral-950 dark:text-white">
+                            Your picture is ready for this product
+                          </p>
+                          <p className="text-[11px] text-neutral-500 mt-0.5">
+                            Click here to change or drag & drop another photo
+                          </p>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setFormData({ ...formData, image: "" });
+                            }}
+                            className="mt-2 text-xs text-rose-500 font-semibold hover:underline cursor-pointer"
+                          >
+                            Remove Picture
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center py-3">
+                        <div className="w-12 h-12 rounded-2xl bg-[#c2a677]/10 text-[#a8894d] dark:text-[#c2a677] flex items-center justify-center mb-2.5">
+                          <Upload className="w-6 h-6 stroke-[2]" />
+                        </div>
+                        <p className="text-xs sm:text-sm font-bold text-neutral-950 dark:text-white">
+                          Click to select a picture from your computer
+                        </p>
+                        <p className="text-[11px] text-neutral-400 mt-1">
+                          or drag & drop your image file here (PNG, JPG, WEBP)
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div>
+                    <div className="flex gap-3">
+                      <input
+                        type="text"
+                        placeholder="/images/products/tee-grey-melange-crewneck.jpg or https://..."
+                        value={formData.image}
+                        onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                        className="flex-1 px-4 py-2.5 bg-stone-100 dark:bg-neutral-950 rounded-xl border border-neutral-300 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#c2a677] text-neutral-900 dark:text-white"
+                      />
+                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200 dark:border-white/10 flex-shrink-0">
+                        <img
+                          src={formData.image || "/images/products/tee-grey-melange-crewneck.jpg"}
+                          alt="Preview"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.src = "/images/products/tee-grey-melange-crewneck.jpg";
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Preset Fast Picker */}
+                    <div className="mt-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+                      <span className="text-[10px] text-neutral-400 whitespace-nowrap">Presets:</span>
+                      {PRESET_IMAGE_OPTIONS.slice(0, 5).map((preset) => (
+                        <button
+                          key={preset.url}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, image: preset.url })}
+                          className="px-2 py-1 bg-stone-100 dark:bg-neutral-800 text-[10px] rounded-lg whitespace-nowrap hover:bg-[#c2a677] hover:text-neutral-950 transition-colors cursor-pointer"
+                        >
+                          {preset.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Description */}
